@@ -30,12 +30,14 @@ public class InterfaceCarte extends JFrame implements MouseListener {
 			e.printStackTrace();
 		}
 		JPanel pan = new ImagePanel(image);
+		JPanel panJeu = new jeuPanel();
 
 		this.setSize(1000, 900);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.getContentPane().add(pan);
+		this.getContentPane().add(panJeu);
 		addMouseListener(this);
 	}
 

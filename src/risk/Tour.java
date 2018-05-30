@@ -76,7 +76,7 @@ public class Tour {
 	}
 	
 	public void deplacementVersTerritoireAllie (Territoire tDep, Territoire tArr, int nbSoldat, int nbCavalier, int nbCanon){
-		tDep
+	//	tDep
 	}
 	
 
