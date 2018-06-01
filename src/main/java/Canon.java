@@ -1,4 +1,5 @@
-package risk;
+package main.java;
+
 
 public class Canon extends Unite{
 

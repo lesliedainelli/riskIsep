@@ -1,4 +1,4 @@
-package risk;
+package main.java;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -22,7 +22,11 @@ import javax.swing.JPanel;
 	     
 	    protected Image buffer;    
 	     
-	    public ImagePanel(Image buffer){
+	    public Image getBuffer() {
+			return buffer;
+		}
+
+		public ImagePanel(Image buffer){
 	        this.buffer = buffer;
 	    }  
 	         

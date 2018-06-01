@@ -1,4 +1,4 @@
-package risk;
+package main.java;
 
 import java.util.Scanner;
 
@@ -47,8 +47,8 @@ public class Tour {
 			this.armeeRecu.addCavaliers(nbCavalier);
 			this.armeeRecu.removeSoldats(nbCavalier * COUT_CAVALIER);
 		} else {
-			System.out.println("Vous n'avez pas assez de soldats pour obtenir" + nbCavalier
-					+ "cavalier(s) (coût d'un cavalier: "+COUT_CAVALIER +")");
+			System.out.println("Vous n'avez pas assez de soldats pour obtenir " + nbCavalier
+					+ " cavalier(s) (coût d'un cavalier: "+COUT_CAVALIER +")");
 		}
 	}
 	
@@ -58,8 +58,8 @@ public class Tour {
 			this.armeeRecu.addCanons(nbCanon);
 			this.armeeRecu.removeSoldats(nbCanon * COUT_CANON);
 		} else {
-			System.out.println("Vous n'avez pas assez de soldats pour obtenir" + nbCanon
-					+ "cavalier(s) (coût d'un canon: "+COUT_CANON +")");
+			System.out.println("Vous n'avez pas assez de soldats pour obtenir " + nbCanon
+					+ " cavalier(s) (coût d'un canon: "+COUT_CANON +")");
 		}
 	}
 	
@@ -76,7 +76,7 @@ public class Tour {
 	}
 	
 	public void deplacementVersTerritoireAllie (Territoire tDep, Territoire tArr, int nbSoldat, int nbCavalier, int nbCanon){
-	//	tDep
+		//tDep
 	}
 	
 

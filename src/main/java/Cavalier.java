@@ -1,4 +1,4 @@
-package risk;
+package main.java;
 
 public class Cavalier extends Unite {
 

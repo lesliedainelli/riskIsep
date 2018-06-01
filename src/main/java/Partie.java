@@ -1,5 +1,6 @@
-package risk;
+package main.java;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -9,8 +10,26 @@ public class Partie {
 	protected ArrayList<Territoire> territoiresList;
 	protected int nbJoueur;
 	
-	public void Partie (){
-	}
+
+	Territoires territoires = new Territoires();
+	//int x = InterfaceCarte.getInstance().getSourisX();
+	
+	
+	
+	/** Constructeur privé */
+    private Partie()
+    {}
+ 
+    /** Instance unique pré-initialisée */
+    private static Partie INSTANCE = new Partie();
+     
+    /** Point d'accès pour l'instance unique du singleton */
+    public static Partie getInstance()
+    {   return INSTANCE;
+    }
+
+	
+
 
 	public void initListJoueurs() {
 		for (int i = 1; i <= nbJoueur; i++) {
@@ -59,4 +78,26 @@ public class Partie {
 		//verif au moins 1 
 		
 	}
+	
+	
+	public void getTerritoireSelected(int sourisX, int sourisY) {
+
+		int c = InterfaceCarte.getInstance().getImage().getRGB(sourisX, sourisY);
+		int red = (c & 0x00ff0000) >> 16;
+		int green = (c & 0x0000ff00) >> 8;
+		int blue = c & 0x000000ff;
+		System.out.println(new Color(c));
+		CodeRVB rvbSelected = new CodeRVB(red, green, blue);
+
+		for (Territoire t : territoires.getListTerritoires()) {
+			if (rvbSelected.equals(t.getCodeRVB())) {
+				System.out.println("Le territoire selected is : " + t.getNom());
+				break;
+			}
+		}
+
+	}
+	
+	
+	
 }

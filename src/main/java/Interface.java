@@ -1,4 +1,4 @@
-package risk;
+package main.java;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -25,8 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class Interface extends JFrame implements MouseListener, MouseMotionListener{
-	private int x, y;// position souris
+public class Interface extends JFrame{
 	
 	private String nbJoueur;
 	private JButton bouton = new JButton("Valider");
@@ -139,7 +138,9 @@ public class Interface extends JFrame implements MouseListener, MouseMotionListe
 		boutonStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				JFrame carte = new InterfaceCarte (); 
+				//JFrame carte = new InterfaceCarte (); 
+				InterfaceCarte.getInstance().init();
+				
 				//this.setVisible(false);
 				//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 /*				System.out.println("new part");
@@ -189,48 +190,6 @@ public class Interface extends JFrame implements MouseListener, MouseMotionListe
 	
 
 	
-    public void mouseClicked(MouseEvent e) {
-        x = e.getX();
-        y = e.getY();
 
-        System.out.println("X:" + x + " " + "Y:" + y);
-    }
-
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 
 }

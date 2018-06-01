@@ -1,24 +1,23 @@
-package risk;
+package main.java;
 
-import java.awt.AWTException;
-import java.awt.Color;
-import java.awt.Robot;
 import java.util.ArrayList;
 
 public class Territoire {
 
 	protected String nom; 
-	protected int[] rvb;
+	private CodeRVB codeRVB;
 	protected ArrayList <String> territoiresAdjacents;  
 	protected Joueur joueurProp; 
 	protected int nbArmee=1;
 	private Armee armee;
 	
-	public Territoire(String nom, int[] rvb, ArrayList<String> territoiresAdjacents) {
+	public Territoire(String nom, CodeRVB codeRVB, ArrayList<String> territoiresAdjacents) {
 		this.nom = nom;
-		this.rvb = rvb;
+		this.codeRVB = codeRVB;
 		this.territoiresAdjacents = territoiresAdjacents;
 	}
+	
+	
 	
 	public boolean verifAuMoinsUnearmee() {
 		if (this.nbArmee <1){
@@ -59,7 +58,7 @@ public class Territoire {
 	}
 
 	
-	public void getRGB (){
+	/*public void getRGB (){
 		Robot robot = null;
 		try {
 			robot = new Robot();
@@ -75,7 +74,7 @@ public class Territoire {
 	    System.out.println("Red   = " + valueRed);
 	    System.out.println("Green = " + valueGreen);
 	    System.out.println("Blue  = " + valueBlue);
-	}
+	}*/
 
 
 
@@ -91,18 +90,6 @@ public class Territoire {
 
 
 
-	public int[] getRvb() {
-		return rvb;
-	}
-
-
-
-	public void setRvb(int[] rvb) {
-		this.rvb = rvb;
-	}
-
-
-
 	public ArrayList<String> getTerritoiresAdjacents() {
 		return territoiresAdjacents;
 	}
@@ -112,4 +99,15 @@ public class Territoire {
 	public void setTerritoiresAdjacents(ArrayList<String> territoiresAdjacents) {
 		this.territoiresAdjacents = territoiresAdjacents;
 	}
+	
+	public CodeRVB getCodeRVB() {
+		return codeRVB;
+	}
+
+	public void setCodeRVB(CodeRVB codeRVB) {
+		this.codeRVB = codeRVB;
+	}
+	
+
+	
 }
