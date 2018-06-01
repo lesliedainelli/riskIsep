@@ -28,10 +28,14 @@ import javax.swing.JPanel;
 
 		public ImagePanel(Image buffer){
 	        this.buffer = buffer;
+	       // this.setVisible(true);
 	    }  
 	         
 	    public void paintComponent(Graphics g) {
-	       g.drawImage(buffer,0,0,null);
+	      
+	    	super.paintComponent(g);
+	    	 g.drawImage(buffer,0,0,null);
+	     //  g.drawImage(buffer.getScaledInstance(850, -1, Image.SCALE_SMOOTH),0,0, this);
 	     }
 	 
 		

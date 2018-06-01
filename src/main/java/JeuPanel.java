@@ -40,6 +40,7 @@ public class JeuPanel extends JPanel  {
 	private JButton okBtnAjoutSoldat = new JButton("OK");
 	private JButton okBtnAjoutCavalier = new JButton("OK");
 	private JButton okBtnAjoutCanon = new JButton("OK");
+	private JButton okBtnAjoutArmee = new JButton("OK");
 	private JButton okBtnTerrDep = new JButton("OK");
 	private JButton okBtnTerrArr = new JButton("OK");
 	private JButton okBtnNbUnite = new JButton("OK");
@@ -57,6 +58,10 @@ public class JeuPanel extends JPanel  {
 	private JComboBox<Integer> cbNbSoldat = new JComboBox<>();
 	private JComboBox<Integer> cbNbCavalier = new JComboBox<>(); 
 	private JComboBox<Integer> cbNbCanon = new JComboBox<>();
+	
+	private JComboBox<Integer> cbNbSoldatAtt = new JComboBox<>();
+	private JComboBox<Integer> cbNbCavalierAtt = new JComboBox<>(); 
+	private JComboBox<Integer> cbNbCanonAtt = new JComboBox<>();
 	
 	private ArrayList<Territoire> territoireJoueur = new ArrayList<Territoire>();
 	
@@ -85,7 +90,7 @@ public class JeuPanel extends JPanel  {
 		JPanel pan = new ImagePanel(image);*/
 		
 		//JPanel panJeu = new JPanel();
-		//panJeu.setSize(40,800);
+		//this.setSize(40,800);
 		this.setBorder(BorderFactory.createTitledBorder(""));
 		this.setLayout(new GridBagLayout());
 		
@@ -99,17 +104,17 @@ public class JeuPanel extends JPanel  {
 		 * Panel : Nom joueur
 		 */
 		JPanel pJoueur = new JPanel();
-		pJoueur.setPreferredSize(new Dimension(380, 60));
+		pJoueur.setPreferredSize(new Dimension(400, 43));
 		pJoueur.setBorder(BorderFactory.createTitledBorder("Nom Joueur"));
 		pJoueur.setLayout(new GridBagLayout());
-		addItem(pJoueur, new JLabel("LEslie"), 0, 0, 1, 1, GridBagConstraints.CENTER);
+		addItem(pJoueur, new JLabel("Leslie"), 0, 0, 1, 1, GridBagConstraints.CENTER);
 		
 		/**
-		 * Panel : Nombre de renfort reçu 
+		 * Panel : Nombre de renfort reÃ§u 
 		 */
 		JPanel pRenfort = new JPanel();
 		pRenfort.setBorder(BorderFactory.createTitledBorder("Reception de renfort : "));
-		pRenfort.setPreferredSize(new Dimension(380, 130));
+		pRenfort.setPreferredSize(new Dimension(400, 105));
 		pRenfort.setLayout(new GridBagLayout());
 		addItem(pRenfort, new JLabel("Nombre de soldats : "), 0, 0, 1, 1, GridBagConstraints.EAST);
 		addItem(pRenfort, labelNbSoldatRenfort, 1, 0, 1, 1, GridBagConstraints.WEST);
@@ -125,15 +130,28 @@ public class JeuPanel extends JPanel  {
 		 */
 		JPanel pPositionRenfort = new JPanel();
 		pPositionRenfort.setBorder(BorderFactory.createTitledBorder("Position des renfort : "));
-		pPositionRenfort.setPreferredSize(new Dimension(380, 130));
+		pPositionRenfort.setPreferredSize(new Dimension(400, 105));
 		pPositionRenfort.setLayout(new GridBagLayout());
 		
 		setCbAjoutSoldat(initComboBoxInterger(nbSoldatRenfort));
 		setCbAjoutCavalier(initComboBoxInterger(nbCavalierRenfort));
 		setCbAjoutCanon(initComboBoxInterger(nbCanonRenfort));
 		
-		addItem(pPositionRenfort, new JLabel("Territoire sélectionné : "), 0, 0, 3, 1, GridBagConstraints.EAST);
-		addItem(pPositionRenfort, new JLabel("Brésil"), 4, 0, 2, 1, GridBagConstraints.WEST);
+		addItem(pPositionRenfort, new JLabel("Territoire sÃ©lectionnÃ© : "), 0, 0, 2, 1, GridBagConstraints.CENTER);
+		addItem(pPositionRenfort, new JLabel("BrÃ©sil"), 2, 0, 2, 1, GridBagConstraints.CENTER);
+		//addItem(pPositionRenfort, okBtnTerrArr, 2, 1, 1, 1, GridBagConstraints.CENTER);
+		
+		addItem(pPositionRenfort, new JLabel("Ajout Soldat"), 0, 1, 1, 1, GridBagConstraints.CENTER);
+		addItem(pPositionRenfort, new JLabel("Ajout Cavalier"), 1, 1, 1, 1, GridBagConstraints.CENTER);
+		addItem(pPositionRenfort, new JLabel("Ajout Canon"), 2, 1, 1, 1, GridBagConstraints.CENTER);
+		
+		addItem(pPositionRenfort, cbAjoutSoldat, 0, 2, 1, 1, GridBagConstraints.CENTER);
+		addItem(pPositionRenfort, cbAjoutCavalier, 1, 2, 1, 1, GridBagConstraints.CENTER);
+		addItem(pPositionRenfort, cbAjoutCanon, 2, 2, 1, 1, GridBagConstraints.CENTER);
+		addItem(pPositionRenfort, okBtnAjoutArmee, 3, 2, 1, 1, GridBagConstraints.WEST);
+		
+/*		addItem(pPositionRenfort, new JLabel("Territoire sÃ©lectionnÃ© : "), 0, 0, 3, 1, GridBagConstraints.EAST);
+		addItem(pPositionRenfort, new JLabel("BrÃ©sil"), 4, 0, 2, 1, GridBagConstraints.WEST);
 		addItem(pPositionRenfort, new JLabel("Ajout Soldat"), 0, 1, 2, 1, GridBagConstraints.CENTER);
 		addItem(pPositionRenfort, new JLabel("Ajout Cavalier"), 2, 1, 2, 1, GridBagConstraints.CENTER);
 		addItem(pPositionRenfort, new JLabel("Ajout Canon"), 4, 1, 2, 1, GridBagConstraints.CENTER);
@@ -142,10 +160,10 @@ public class JeuPanel extends JPanel  {
 		addItem(pPositionRenfort, okBtnAjoutCanon, 5, 2, 1, 1, GridBagConstraints.WEST);
 		addItem(pPositionRenfort, cbAjoutSoldat, 0, 2, 1, 1, GridBagConstraints.EAST);
 		addItem(pPositionRenfort, cbAjoutCavalier, 2, 2, 1, 1, GridBagConstraints.EAST);
-		addItem(pPositionRenfort, cbAjoutCanon, 4, 2, 1, 1, GridBagConstraints.EAST);
+		addItem(pPositionRenfort, cbAjoutCanon, 4, 2, 1, 1, GridBagConstraints.EAST);*/
 		
 		/**
-		 * MAJ du nombre de renfort soldat à positionner + MAJ ComboBox
+		 * MAJ du nombre de renfort soldat ï¿½ positionner + MAJ ComboBox
 		 */
 		okBtnAjoutSoldat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -162,7 +180,7 @@ public class JeuPanel extends JPanel  {
 			}
 		});
 		/**
-		 * MAJ du nombre de renfort cavalier à positionner + MAJ ComboBox
+		 * MAJ du nombre de renfort cavalier ï¿½ positionner + MAJ ComboBox
 		 */
 		okBtnAjoutCavalier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -179,7 +197,7 @@ public class JeuPanel extends JPanel  {
 			}
 		});
 		/**
-		 * MAJ du nombre de renfort canon à positionner + MAJ ComboBox
+		 * MAJ du nombre de renfort canon ï¿½ positionner + MAJ ComboBox
 		 */
 		okBtnAjoutCanon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -200,18 +218,18 @@ public class JeuPanel extends JPanel  {
 		
 		
 		/**
-		 * Panel : Deplacement vers Territoire alié
+		 * Panel : Deplacement vers Territoire aliÃ©
 		 */
 		JPanel pDeplacementTerrAlie = new JPanel();
-		pDeplacementTerrAlie.setBorder(BorderFactory.createTitledBorder("Deplacement vers Territoire alié : "));
-		pDeplacementTerrAlie.setPreferredSize(new Dimension(380, 150));
+		pDeplacementTerrAlie.setBorder(BorderFactory.createTitledBorder("Deplacement vers Territoire aliÃ© : "));
+		pDeplacementTerrAlie.setPreferredSize(new Dimension(400, 143));
 		pDeplacementTerrAlie.setLayout(new GridBagLayout());
-		addItem(pDeplacementTerrAlie, new JLabel("Territoire départ : "), 0, 0, 1, 1, GridBagConstraints.CENTER);
-		addItem(pDeplacementTerrAlie, new JLabel("Brésil"), 1, 0, 1, 1, GridBagConstraints.CENTER);
+		addItem(pDeplacementTerrAlie, new JLabel("Territoire dÃ©part : "), 0, 0, 1, 1, GridBagConstraints.CENTER);
+		addItem(pDeplacementTerrAlie, new JLabel("BrÃ©sil"), 1, 0, 1, 1, GridBagConstraints.CENTER);
 		addItem(pDeplacementTerrAlie, okBtnTerrDep, 2, 0, 1, 1, GridBagConstraints.CENTER);
 		
-		addItem(pDeplacementTerrAlie, new JLabel("Territoire arrivé : "), 0, 1, 1, 1, GridBagConstraints.CENTER);
-		addItem(pDeplacementTerrAlie, new JLabel("Brésil"), 1, 1, 1, 1, GridBagConstraints.CENTER);
+		addItem(pDeplacementTerrAlie, new JLabel("Territoire arrivÃ© : "), 0, 1, 1, 1, GridBagConstraints.CENTER);
+		addItem(pDeplacementTerrAlie, new JLabel("BrÃ©sil"), 1, 1, 1, 1, GridBagConstraints.CENTER);
 		addItem(pDeplacementTerrAlie, okBtnTerrArr, 2, 1, 1, 1, GridBagConstraints.CENTER);
 		
 		addItem(pDeplacementTerrAlie, new JLabel("Nombre Soldat"), 0, 2, 1, 1, GridBagConstraints.CENTER);
@@ -221,9 +239,47 @@ public class JeuPanel extends JPanel  {
 		addItem(pDeplacementTerrAlie, cbNbSoldat, 0, 3, 1, 1, GridBagConstraints.CENTER);
 		addItem(pDeplacementTerrAlie, cbNbCavalier, 1, 3, 1, 1, GridBagConstraints.CENTER);
 		addItem(pDeplacementTerrAlie, cbNbCanon, 2, 3, 1, 1, GridBagConstraints.CENTER);
-		addItem(pDeplacementTerrAlie, okBtnAjoutSoldat, 3, 3, 1, 1, GridBagConstraints.WEST);
+		addItem(pDeplacementTerrAlie, okBtnNbUnite, 3, 3, 1, 1, GridBagConstraints.WEST);
 		
+		/**
+		 * Panel : Attaquer un territoire
+		 */
+		JPanel pAttaquerTerr = new JPanel();
+		pAttaquerTerr.setBorder(BorderFactory.createTitledBorder("Attaquer un territoire : "));
+		pAttaquerTerr.setPreferredSize(new Dimension(400, 182));
+		pAttaquerTerr.setLayout(new GridBagLayout());
 		
+		addItem(pAttaquerTerr, new JLabel("Territoire dÃ©part : "), 0, 0, 2, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, new JLabel("Territoire arrivÃ© : "), 2, 0, 2, 1, GridBagConstraints.CENTER);
+		//addItem(pDeplacementTerrAlie, okBtnTerrDep, 2, 0, 1, 1, GridBagConstraints.CENTER);
+		
+		addItem(pAttaquerTerr, new JLabel("PÃ©rou"), 0, 1, 2, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, new JLabel("BrÃ©sil"), 2, 1, 2, 1, GridBagConstraints.CENTER);
+	//	addItem(pAttaquerTerr, okBtnTerrArr, 2, 1, 1, 1, GridBagConstraints.CENTER);
+		
+		addItem(pAttaquerTerr, new JLabel("Nombre Soldat"), 0, 2, 1, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, new JLabel("Nombre Cavalier"), 1, 2, 1, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, new JLabel("Nombre Canon"), 2, 2, 1, 1, GridBagConstraints.CENTER);
+		
+		addItem(pAttaquerTerr, cbNbSoldatAtt, 0, 3, 1, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, cbNbCavalierAtt, 1, 3, 1, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, cbNbCanonAtt, 2, 3, 1, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, okBtnNbUnite, 3, 3, 1, 1, GridBagConstraints.WEST);
+		
+		addItem(pAttaquerTerr, new JLabel("Soldat"), 0, 4, 1, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, new JLabel("3"), 1, 4, 1, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, new JLabel("Soldat"), 2, 4, 1, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, new JLabel("2"), 3, 4, 1, 1, GridBagConstraints.CENTER);
+		
+		addItem(pAttaquerTerr, new JLabel("Soldat"), 0, 5, 1, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, new JLabel("3"), 1, 5, 1, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, new JLabel("Soldat"), 2, 5, 1, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, new JLabel("2"), 3, 5, 1, 1, GridBagConstraints.CENTER);
+		
+		addItem(pAttaquerTerr, new JLabel("Soldat"), 0, 6, 1, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, new JLabel("3"), 1, 6, 1, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, new JLabel("Soldat"), 2, 6, 1, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, new JLabel("2"), 3, 6, 1, 1, GridBagConstraints.CENTER);
 		
 /*		this.getContentPane().add(pJoueur);
 		this.getContentPane().add(pRenfort);
@@ -238,6 +294,7 @@ public class JeuPanel extends JPanel  {
 		addItem(this, pRenfort, 0, 1, 1, 1, GridBagConstraints.CENTER);
 		addItem(this, pPositionRenfort, 0, 2, 1, 1, GridBagConstraints.CENTER);
 		addItem(this, pDeplacementTerrAlie, 0, 3, 1, 1, GridBagConstraints.CENTER);
+		addItem(this, pAttaquerTerr, 0, 4, 1, 1, GridBagConstraints.CENTER);
 		
 		
 /*		this.getContentPane().add(panJeu, BorderLayout.EAST);
@@ -250,8 +307,8 @@ public class JeuPanel extends JPanel  {
 	
 	
 	/**
-	 * Permet de créer une comboBox en fonction du nombre d'unité
-	 * @param nbItem : nb Unité (soldat, cavalier, canon)
+	 * Permet de crï¿½er une comboBox en fonction du nombre d'unitï¿½
+	 * @param nbItem : nb Unitï¿½ (soldat, cavalier, canon)
 	 * @return JComboBox
 	 */
 	private JComboBox<Integer> initComboBoxInterger(Integer nbItem) {

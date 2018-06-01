@@ -8,6 +8,9 @@ public class Canon extends Unite{
 		// TODO Auto-generated constructor stub
 	}*/
 	
+	/**
+	 * 
+	 */
 	public Canon() {
 		super(4, 9, 3, 2, 1);
 	}

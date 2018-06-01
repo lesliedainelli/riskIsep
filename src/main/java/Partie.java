@@ -16,14 +16,14 @@ public class Partie {
 	
 	
 	
-	/** Constructeur privé */
+	/** Constructeur privï¿½ */
     private Partie()
     {}
  
-    /** Instance unique pré-initialisée */
+    /** Instance unique prï¿½-initialisï¿½e */
     private static Partie INSTANCE = new Partie();
      
-    /** Point d'accès pour l'instance unique du singleton */
+    /** Point d'accï¿½s pour l'instance unique du singleton */
     public static Partie getInstance()
     {   return INSTANCE;
     }
@@ -92,6 +92,8 @@ public class Partie {
 		for (Territoire t : territoires.getListTerritoires()) {
 			if (rvbSelected.equals(t.getCodeRVB())) {
 				System.out.println("Le territoire selected is : " + t.getNom());
+				//System.out.println(InterfaceCarte.getInstance().getImage().getWidth());
+				//System.out.println(InterfaceCarte.getInstance().getImage().getHeight());
 				break;
 			}
 		}

@@ -48,9 +48,14 @@ public class Territoire {
 	public void addArmee(int nbSoldats, int nbCavaliers, int nbCanons) {
 		this.armee.addCanons(nbCanons);
 		this.armee.addCavaliers(nbCavaliers);
-		this.armee.addSoldats(nbSoldats);
+		this.armee.addSoldats(nbSoldats); 
 	}
 	
+	/**
+	 * @param nbSoldats 
+	 * @param nbCavaliers
+	 * @param nbCanons
+	 */
 	public void removeArmee(int nbSoldats, int nbCavaliers, int nbCanons) {
 		this.armee.removeCanons(nbCanons);
 		this.armee.removeCavaliers(nbCavaliers);
