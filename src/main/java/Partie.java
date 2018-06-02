@@ -16,14 +16,14 @@ public class Partie {
 	
 	
 	
-	/** Constructeur priv� */
+	/** Constructeur prive */
     private Partie()
     {}
  
-    /** Instance unique pr�-initialis�e */
+    /** Instance unique pre-initialisee */
     private static Partie INSTANCE = new Partie();
      
-    /** Point d'acc�s pour l'instance unique du singleton */
+    /** Point d'acces pour l'instance unique du singleton */
     public static Partie getInstance()
     {   return INSTANCE;
     }
@@ -47,6 +47,10 @@ public class Partie {
 			joueurList.get(j).addTerritoire(t);
 			j++;
 		}
+	}
+	
+	public void dessinTerritoire (){
+		//for (joueur)
 	}
 	
 	public void initArmees(){

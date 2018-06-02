@@ -35,6 +35,7 @@ import javax.swing.JPanel;
 	      
 	    	super.paintComponent(g);
 	    	 g.drawImage(buffer,0,0,null);
+	    	// g.drawString("1", 665,305);
 	     //  g.drawImage(buffer.getScaledInstance(850, -1, Image.SCALE_SMOOTH),0,0, this);
 	     }
 	 

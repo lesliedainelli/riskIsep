@@ -40,7 +40,6 @@ public class InterfaceCarte extends JFrame implements MouseListener {
 		
 	public void init() {
 		//this.setSize(1600, 800);
-		JPanel panContenu = new JPanel();
 		try {
 			//image = ImageIO.read(new File("src\\main\\resources\\carte.png"));
 			image = ImageIO.read(new File("/Users/lesliedainelli/Documents/workspace/risk/src/main/resources/carte.png"));
@@ -52,15 +51,18 @@ public class InterfaceCarte extends JFrame implements MouseListener {
 		
 		JPanel pan = new ImagePanel(image);
 		JeuPanel panJeu = new JeuPanel();
+		//JPanel panJeu = new ImagePanel(image);
 		//this.getContentPane().add(pan, BorderLayout.WEST);
 		//this.setSize(1200, 900);
 		//this.setSize(image.getWidth(), image.getHeight());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		
-		panContenu.add(panJeu, BorderLayout.EAST);
-		panContenu.add(pan, BorderLayout.WEST);
-		this.getContentPane().add(panContenu);
+		//panContenu.add(panJeu, BorderLayout.EAST);
+		
+		this.add(pan);
+		this.add(panJeu, BorderLayout.EAST);
+		
 		
 		this.setSize(1600, 800);
 		this.setVisible(true);

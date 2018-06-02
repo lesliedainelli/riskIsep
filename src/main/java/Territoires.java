@@ -10,7 +10,7 @@ public class Territoires {
 	Territoire terr;
 	ArrayList<Territoire> listTerritoires = new ArrayList<Territoire>();
 	
-	public List<Territoire> getListTerritoires() {
+	public ArrayList<Territoire> getListTerritoires() {
 		return listTerritoires;
 	}
 
@@ -36,6 +36,9 @@ public class Territoires {
 		listTerritoiresAdjacents.add("Afrique du nord");		
 		terr = new Territoire("Bresil", new CodeRVB(153, 37, 55), listTerritoiresAdjacents);
 		listTerritoires.add(terr);
+		terr.setMilieu_x(263);
+		terr.setMilieu_y(371);
+		
 		
 		listTerritoiresAdjacents = new ArrayList<String>();
 		listTerritoiresAdjacents.add("Bresil");
@@ -231,7 +234,7 @@ public class Territoires {
 		listTerritoiresAdjacents = new ArrayList<String>(); 
 		listTerritoiresAdjacents.add("Mongolie"); 
 		listTerritoiresAdjacents.add("Siam"); 
-		listTerritoiresAdjacents.add("Sib�rie"); 
+		listTerritoiresAdjacents.add("Siberie"); 
 		listTerritoiresAdjacents.add("Oural"); 
 		listTerritoiresAdjacents.add("Inde"); 
 		listTerritoiresAdjacents.add("Afghanistan"); 
@@ -250,7 +253,7 @@ public class Territoires {
 		//4
 		listTerritoiresAdjacents = new ArrayList<String>(); 
 		listTerritoiresAdjacents.add("Yakoutie" ); 
-		listTerritoiresAdjacents.add("Sib�rie"); 
+		listTerritoiresAdjacents.add("Siberie"); 
 		listTerritoiresAdjacents.add("Mongolie"); 
 		listTerritoiresAdjacents.add("Kamtchatka"); 
 		terr = new Territoire("Tchita", new CodeRVB(167,236,178), listTerritoiresAdjacents); 
@@ -290,13 +293,13 @@ public class Territoires {
 		listTerritoiresAdjacents.add("Chine");
 		terr = new Territoire("Mongolie ", new CodeRVB(38,80, 30), listTerritoiresAdjacents); 
 		listTerritoires.add(terr);
-
+		
 		//9
 		listTerritoiresAdjacents = new ArrayList<String>(); 
-		listTerritoiresAdjacents.add("Indon�sie"); 
+		listTerritoiresAdjacents.add("Indonesie"); 
 		listTerritoiresAdjacents.add("Chine"); 
 		listTerritoiresAdjacents.add("Inde");
-		terr = new Territoire("Siam", new CodeRVB(137,219, 140), listTerritoiresAdjacents); 
+		terr = new Territoire("Siam", new CodeRVB(0,83, 4), listTerritoiresAdjacents); 
 		listTerritoires.add(terr);
 
 		//10
@@ -305,13 +308,13 @@ public class Territoires {
 		listTerritoiresAdjacents.add("Chine"); 
 		listTerritoiresAdjacents.add("Yakoutie"); 
 		listTerritoiresAdjacents.add("Oural");
-		terr = new Territoire("Sib�rie", new CodeRVB(66,124, 76), listTerritoiresAdjacents); 
+		terr = new Territoire("Siberie", new CodeRVB(66,124, 76), listTerritoiresAdjacents); 
 		listTerritoires.add(terr);
 
 		//11
 		listTerritoiresAdjacents = new ArrayList<String>(); 
 		listTerritoiresAdjacents.add("Afghanistan"); 
-		listTerritoiresAdjacents.add("Sib�rie"); 
+		listTerritoiresAdjacents.add("Siberie"); 
 		listTerritoiresAdjacents.add("Ukraine");
 		terr = new Territoire("Oural", new CodeRVB(69,143, 101), listTerritoiresAdjacents); 
 		listTerritoires.add(terr);
@@ -320,7 +323,7 @@ public class Territoires {
 		listTerritoiresAdjacents = new ArrayList<String>(); 
 		listTerritoiresAdjacents.add("Tchita"); 
 		listTerritoiresAdjacents.add("Kamtchatka"); 
-		listTerritoiresAdjacents.add("Sib�rie");
+		listTerritoiresAdjacents.add("Siberie");
 		terr = new Territoire("Yakoutie", new CodeRVB(86,135, 76), listTerritoiresAdjacents); 
 		listTerritoires.add(terr);
 
