@@ -6,21 +6,35 @@ import java.util.ArrayList;
 public class Joueur {
 
 //	protected int nbArmee;
-	protected int nbTerritoiresCaptures;
-	protected int id;
-	protected String nom; 
+	private int nbTerritoiresCaptures;
+	private int id;
+	private String nom; 
 /*	protected int nbSoldats;
 	protected int nbCavaliers;
 	protected int nbCanons;*/
-	protected ArrayList<Territoire> territoireList;
-	protected ArrayList<Region> regionList;
-	//protected int nbTerritoires = this.territoireList.size();// peut faire ça?? demander
-	
+	private ArrayList<Territoire> territoireList = new ArrayList<Territoire>();
+	private ArrayList<Region> regionList= new ArrayList<Region>();
+//	private final int COUT_SOLDAT = 1;
+	private final int COUT_CAVALIER = 3;
+	private final int COUT_CANON=7;
+	private Armee armeeRecu =  new Armee();
+	private Integer nbSoldatRenfort; 
+	private Integer nbCavalierRenfort; 
+	private Integer nbCanonRenfort;
 
 
-	public Joueur(int id, String nom) {
+	public Joueur(Integer id, String nom) {
 		this.id = id;
 		this.nom = nom;
+	}
+	
+	public boolean verifTerritoireAppartient(Territoire t ){
+		for (Territoire terr : this.territoireList){
+			if(terr.equals(t)){
+				return true; 
+			}
+		}
+		return false;
 	}
 	
 	public boolean gagner (){
@@ -53,15 +67,64 @@ public class Joueur {
 		this.nbTerritoiresCaptures=0;
 	}
 	
-
-
-/*	public int getNbArmee() {
-		return nbArmee;
+	
+	/**
+	 * Calcul du nombre de renforts au début de chaque tour
+	 * Par défaut tous ces renforts sont des soldats que l'on pourra échanger après
+	 */
+	public void receptionRenfort(Joueur joueur ){
+		int nbTerritoire = (int) Math.floor(joueur.getTerritoireList().size()/3);
+		int nbRegion = (int) Math.floor(joueur.getRegionList().size()/2);
+		int nbCapture = joueur.getNbTerritoiresCaptures(); // a verif pour histoire des 50 %
+		int somme = nbTerritoire+nbRegion+nbCapture;
+		if (somme<2){
+			this.armeeRecu.addSoldats(2);
+			//this.nbSoldatRecu = 2;
+		}else {
+			this.armeeRecu.addSoldats(somme);
+			//this.nbSoldatRecu = somme;
+		}
+	}
+	
+	
+	public void echangePourCavalier(int nbCavalier) {
+		if (this.armeeRecu.getSoldatList().size() >= nbCavalier * COUT_CAVALIER) {  // vérif peut échanger 
+			this.armeeRecu.addCavaliers(nbCavalier);
+			this.armeeRecu.removeSoldats(nbCavalier * COUT_CAVALIER);
+			System.out.println(nbCavalier * COUT_CAVALIER);
+			//System.out.println("taille " + armeeRecu.getCavalierList().size());
+			//System.out.println(" nb "+ armeeRecu.getNbCavalier().toString());
+			
+		} else {
+			System.out.println("Vous n'avez pas assez de soldats pour obtenir " + nbCavalier
+					+ " cavalier(s) (coût d'un cavalier: "+COUT_CAVALIER +")");
+		}
+	}
+	
+	
+	public void echangePourCanon(int nbCanon) {
+		if (this.armeeRecu.getSoldatList().size() >= nbCanon * COUT_CANON) {  // vérif peut échanger 
+			this.armeeRecu.addCanons(nbCanon);
+			this.armeeRecu.removeSoldats(nbCanon * COUT_CANON);
+		} else {
+			System.out.println("Vous n'avez pas assez de soldats pour obtenir " + nbCanon
+					+ " cavalier(s) (coût d'un canon: "+COUT_CANON +")");
+		}
+	}
+	
+	public void placementArmee(Territoire t, int nbSoldat, int nbCavalier, int nbCanon){
+		if(this.armeeRecu.getSoldatList().size() < nbSoldat){
+			System.out.println(" vous n'avez pas assez de soldats"); 
+		} else if (this.armeeRecu.getCavalierList().size() < nbCavalier){
+			System.out.println(" vous n'avez pas assez de cavaliers");
+		} else if (this.armeeRecu.getCanonList().size() < nbCanon){
+			System.out.println(" vous n'avez pas assez de canons");
+		} else {
+			t.getArmee().addArmee(nbSoldat, nbCavalier, nbCanon);
+			armeeRecu.removeArmee(nbSoldat, nbCavalier, nbCanon);
+		}
 	}
 
-	public void setNbArmee(int nbArmee) {
-		this.nbArmee = nbArmee;
-	}*/
 
 	public int getNbTerritoiresCaptures() {
 		return nbTerritoiresCaptures;
@@ -71,11 +134,11 @@ public class Joueur {
 		this.nbTerritoiresCaptures = nbTerritoiresCaptures;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -86,30 +149,6 @@ public class Joueur {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
-/*	public int getNbSoldats() {
-		return nbSoldats;
-	}
-
-	public void setNbSoldats(int nbSoldats) {
-		this.nbSoldats = nbSoldats;
-	}
-
-	public int getNbCavaliers() {
-		return nbCavaliers;
-	}
-
-	public void setNbCavaliers(int nbCavaliers) {
-		this.nbCavaliers = nbCavaliers;
-	}
-
-	public int getNbCanons() {
-		return nbCanons;
-	}
-
-	public void setNbCanons(int nbCanons) {
-		this.nbCanons = nbCanons;
-	}*/
 
 	public ArrayList<Territoire> getTerritoireList() {
 		return territoireList;
@@ -127,7 +166,36 @@ public class Joueur {
 		this.regionList = regionList;
 	}
 
+	public Armee getArmeeRecu() {
+		return armeeRecu;
+	}
 
+	public void setArmeeRecu(Armee armeeRecu) {
+		this.armeeRecu = armeeRecu;
+	}
+/*	public Integer getNbSoldatRenfort() {
+		return nbSoldatRenfort;
+	}
+
+	public void setNbSoldatRenfort(Integer nbSoldatRenfort) {
+		this.nbSoldatRenfort = nbSoldatRenfort;
+	}
+
+	public Integer getNbCavalierRenfort() {
+		return nbCavalierRenfort;
+	}
+
+	public void setNbCavalierRenfort(Integer nbCavalierRenfort) {
+		this.nbCavalierRenfort = nbCavalierRenfort;
+	}
+
+	public Integer getNbCanonRenfort() {
+		return nbCanonRenfort;
+	}
+
+	public void setNbCanonRenfort(Integer nbCanonRenfort) {
+		this.nbCanonRenfort = nbCanonRenfort;
+	}*/
 	
 	
 }

@@ -3,7 +3,7 @@ package main.java;
 
 public class Risk {
 	public static void main(String[] main) {
-		Interface fenGEN = new Interface();
+		InterfacePrincipale fenGEN = new InterfacePrincipale();
 		
 		
 		//JeuPanel fenGEN = new JeuPanel();

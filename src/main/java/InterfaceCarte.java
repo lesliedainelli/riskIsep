@@ -1,7 +1,10 @@
 package main.java;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -9,7 +12,9 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class InterfaceCarte extends JFrame implements MouseListener {
@@ -39,7 +44,6 @@ public class InterfaceCarte extends JFrame implements MouseListener {
 
 		
 	public void init() {
-		//this.setSize(1600, 800);
 		try {
 			//image = ImageIO.read(new File("src\\main\\resources\\carte.png"));
 			image = ImageIO.read(new File("/Users/lesliedainelli/Documents/workspace/risk/src/main/resources/carte.png"));
@@ -49,20 +53,19 @@ public class InterfaceCarte extends JFrame implements MouseListener {
 			e.printStackTrace();
 		}
 		
-		JPanel pan = new ImagePanel(image);
+		JPanel pan = new CartePanel(image);
 		JeuPanel panJeu = new JeuPanel();
-		//JPanel panJeu = new ImagePanel(image);
-		//this.getContentPane().add(pan, BorderLayout.WEST);
-		//this.setSize(1200, 900);
-		//this.setSize(image.getWidth(), image.getHeight());
+		JPanel pMessage = new JPanel();
+		pMessage.setPreferredSize(new Dimension(400, 50));
+		pMessage.setBorder(BorderFactory.createTitledBorder("Message"));
+		//pMessage.setLayout(new GridBagLayout());
+	//	addItem(pMessage, new JLabel("Veuillez saisir un nombre blablabla"), 0, 0, 1, 1, GridBagConstraints.CENTER);
+		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
-		
-		//panContenu.add(panJeu, BorderLayout.EAST);
-		
 		this.add(pan);
 		this.add(panJeu, BorderLayout.EAST);
-		
+		//this.add(pMessage, BorderLayout.SOUTH);
 		
 		this.setSize(1600, 800);
 		this.setVisible(true);
@@ -74,8 +77,10 @@ public class InterfaceCarte extends JFrame implements MouseListener {
 		sourisX = e.getX()- 8;
 		sourisY = e.getY()- 30;
 		System.out.println("X:" + sourisX + " " + "Y:" + sourisY);
+		Partie.getInstance().setSourisX(sourisX);
+		Partie.getInstance().setSourisY(sourisY);
+		Partie.getInstance().getTerritoireSelected();
 		
-		Partie.getInstance().getTerritoireSelected(sourisX, sourisY);
 	}
 
 	

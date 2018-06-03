@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -18,7 +19,7 @@ import javax.swing.JPanel;
 	import java.awt.Image;
 	import javax.swing.JPanel;
 	 
-	public class ImagePanel extends JPanel {
+	public class CartePanel extends JPanel {
 	     
 	    protected Image buffer;    
 	     
@@ -26,7 +27,7 @@ import javax.swing.JPanel;
 			return buffer;
 		}
 
-		public ImagePanel(Image buffer){
+		public CartePanel(Image buffer){
 	        this.buffer = buffer;
 	       // this.setVisible(true);
 	    }  
@@ -35,9 +36,13 @@ import javax.swing.JPanel;
 	      
 	    	super.paintComponent(g);
 	    	 g.drawImage(buffer,0,0,null);
-	    	// g.drawString("1", 665,305);
-	     //  g.drawImage(buffer.getScaledInstance(850, -1, Image.SCALE_SMOOTH),0,0, this);
+	    	 ArrayList <DrawIdJoueur> list = Partie.getInstance().getDrawIdJoueurList();
+	    	 for (DrawIdJoueur d : list){
+	    		 g.drawString(d.getIdJoueur(), d.getMilieu_x(),d.getMilieu_y());
+	    	 }
 	     }
+	    
+
 	 
 		
 	}

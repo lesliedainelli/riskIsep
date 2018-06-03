@@ -47,41 +47,7 @@ public class Territoire {
 		return false;
 	}
 	
-	public void addArmee(int nbSoldats, int nbCavaliers, int nbCanons) {
-		this.armee.addCanons(nbCanons);
-		this.armee.addCavaliers(nbCavaliers);
-		this.armee.addSoldats(nbSoldats); 
-	}
-	
-	/**
-	 * @param nbSoldats 
-	 * @param nbCavaliers
-	 * @param nbCanons
-	 */
-	public void removeArmee(int nbSoldats, int nbCavaliers, int nbCanons) {
-		this.armee.removeCanons(nbCanons);
-		this.armee.removeCavaliers(nbCavaliers);
-		this.armee.removeSoldats(nbSoldats);
-	}
 
-	
-	/*public void getRGB (){
-		Robot robot = null;
-		try {
-			robot = new Robot();
-		} catch (AWTException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	    Color color = robot.getPixelColor(InterfaceCarte.getSourisX(), InterfaceCarte.getSourisY());
-	    int valueRed=color.getRed();
-		int valueGreen=color.getGreen();
-		int valueBlue=color.getBlue();
-
-	    System.out.println("Red   = " + valueRed);
-	    System.out.println("Green = " + valueGreen);
-	    System.out.println("Blue  = " + valueBlue);
-	}*/
 
 
 
@@ -137,6 +103,18 @@ public class Territoire {
 
 	public void setMilieu_y(int milieu_y) {
 		this.milieu_y = milieu_y;
+	}
+
+
+
+	public Armee getArmee() {
+		return armee;
+	}
+
+
+
+	public void setArmee(Armee armee) {
+		this.armee = armee;
 	}
 	
 

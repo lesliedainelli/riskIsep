@@ -11,6 +11,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.imageio.ImageIO;
@@ -25,11 +26,11 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class Interface extends JFrame{
+public class InterfacePrincipale extends JFrame{
 	
-	private String nbJoueur;
-	private JButton bouton = new JButton("Valider");
-	private JButton boutonStart = new JButton("Commencer la partie");
+	private int nbJoueur;
+	private JButton validerNbJoueurBtn = new JButton("Valider");
+	private JButton startPartBtn = new JButton("Commencer la partie");
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	private JRadioButton nbJoueur2 = new JRadioButton("2");
@@ -59,30 +60,7 @@ public class Interface extends JFrame{
 //	private JTextField txtNomJoueur1, txtNomJoueur2, txtNomJoueur3, txtNomJoueur4, txtNomJoueur5, txtNomJoueur6; 
 //	private JLabel [] tabJLabel= {labelNomJoueur1,labelNomJoueur2, labelNomJoueur3, labelNomJoueur4, labelNomJoueur5, labelNomJoueur6};
 	
-	public Interface() {
-/*		labelNomJoueur1= new JLabel("Nom du joueur 1");
-		labelNomJoueur2= new JLabel("Nom du joueur 2");
-		labelNomJoueur3= new JLabel("Nom du joueur 3");
-		labelNomJoueur4= new JLabel("Nom du joueur 4");
-		labelNomJoueur5= new JLabel("Nom du joueur 5");
-		labelNomJoueur6= new JLabel("Nom du joueur 6");*/
-		
-/*		txtNomJoueur1 = new JTextField ();
-		txtNomJoueur2 = new JTextField ();
-		txtNomJoueur3 = new JTextField ();
-		txtNomJoueur4 = new JTextField ();
-		txtNomJoueur5 = new JTextField ();
-		txtNomJoueur6 = new JTextField ();*/
-		
-/*		
-		txtNomJoueur1.setPreferredSize(new Dimension(500, 35));
-		txtNomJoueur2.setPreferredSize(new Dimension(500, 35));
-		txtNomJoueur3.setPreferredSize(new Dimension(500, 35));
-		txtNomJoueur4.setPreferredSize(new Dimension(500, 35));
-		txtNomJoueur5.setPreferredSize(new Dimension(500, 35));
-		txtNomJoueur6.setPreferredSize(new Dimension(500, 35));*/
-		
-		
+	public InterfacePrincipale() {
 
 		
 		this.setTitle("Jeu RISK");
@@ -109,7 +87,7 @@ public class Interface extends JFrame{
 		panNbJoueur.add(nbJoueur4);
 		panNbJoueur.add(nbJoueur5);
 		panNbJoueur.add(nbJoueur6);
-		panNbJoueur.add(bouton);
+		panNbJoueur.add(validerNbJoueurBtn);
 
 		
 		this.getContentPane().add(panNbJoueur);
@@ -117,49 +95,42 @@ public class Interface extends JFrame{
 		
 		panNomJoueur.setVisible(false);
 
-		bouton.addActionListener(new ActionListener() {
+		validerNbJoueurBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				nbJoueur = getSelectedButtonText(buttonGroup);
-				int intNbjoueur = Integer.parseInt(nbJoueur);
-				creationPanneau(panNomJoueur, intNbjoueur * 70 , "Noms des joueurs : ");
+				String strNbJoueur = getSelectedButtonText(buttonGroup);
+				nbJoueur = Integer.parseInt(strNbJoueur);
+				creationPanneau(panNomJoueur, nbJoueur * 70 , "Noms des joueurs : ");
+
 			
-				for (int i=0; i < intNbjoueur; i++){
+				for (int i=0; i < nbJoueur; i++){
 					tabJTextField[i].setPreferredSize(new Dimension(500, 35));
 					panNomJoueur.add(tabJLabel[i]);
 					panNomJoueur.add(tabJTextField[i]);
 				}
 				
-				panNomJoueur.add(boutonStart);
+				panNomJoueur.add(startPartBtn);
 			}
 		});
 		
 		
-		boutonStart.addActionListener(new ActionListener() {
+		startPartBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				//JFrame carte = new InterfaceCarte (); 
-				InterfaceCarte.getInstance().init();
-				
-				//this.setVisible(false);
-				//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-/*				System.out.println("new part");
-				JFrame fen = new JFrame (""); 
-				Image image = null;
-				try {
-					image = ImageIO.read(new File("/Users/lesliedainelli/Documents/workspace/risk/ressources/carte.png"));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				ArrayList <String> nomJoueursList = new ArrayList <String>();
+
+				for (int i=0; i < nbJoueur; i++){
+					String jTextValue = tabJTextField[i].getText();
+					nomJoueursList.add(jTextValue);
+					//System.out.println(" jTextValue : " + jTextValue);
 				}
-				JPanel pan = new InterfaceCarte(image);
 				
-				fen.setSize(1000,900);
-				fen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				fen.setLocationRelativeTo(null);
-				fen.setVisible(true);
-				fen.getContentPane().add(pan);*/
-			//	  addMouseListener(this);
+				Partie.getInstance().setNbJoueur(nbJoueur);
+				Partie.getInstance().initListJoueurs(nomJoueursList);
+				Partie.getInstance().initTerritoireAlea ();
+				Partie.getInstance().initArmees();
+				Partie.getInstance().dessinTerritoire();
+				InterfaceCarte.getInstance().init();
+
 			}
 		});
 

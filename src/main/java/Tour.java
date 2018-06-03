@@ -71,7 +71,8 @@ public class Tour {
 		} else if (this.armeeRecu.getCanonList().size() < nbCanon){
 			System.out.println(" vous n'avez pas assez de canons");
 		} else {
-			t.addArmee(nbSoldat, nbCavalier, nbCanon);
+			t.getArmee().addArmee(nbSoldat, nbCavalier, nbCanon);
+			armeeRecu.removeArmee(nbSoldat, nbCavalier, nbCanon);
 		}
 	}
 	

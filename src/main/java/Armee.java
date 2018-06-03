@@ -5,15 +5,18 @@ import java.util.ArrayList;
 
 public class Armee {
 
-	private ArrayList<Soldat> soldatList;
-	private ArrayList<Cavalier> cavalierList;
-	private ArrayList<Canon> canonList;
+	private ArrayList<Soldat> soldatList = new ArrayList<Soldat>();
+	private ArrayList<Cavalier> cavalierList = new ArrayList<Cavalier>();
+	private ArrayList<Canon> canonList = new ArrayList<Canon>();
 
-	public Armee(ArrayList<Soldat> soldatList, ArrayList<Cavalier> cavalierList, ArrayList<Canon> canonList) {
+/*	public Armee(ArrayList<Soldat> soldatList, ArrayList<Cavalier> cavalierList, ArrayList<Canon> canonList) {
 		super();
 		this.soldatList = soldatList;
 		this.cavalierList = cavalierList;
 		this.canonList = canonList;
+	}*/
+	
+	public Armee() {
 	}
 	
 	/**
@@ -54,7 +57,9 @@ public class Armee {
 		if (nbSoldats > this.soldatList.size()){
 			System.out.println("Nombre de soldat à retirer supérieur au nombre que vous avez"); // voir si nécessaire ???
 		} else {
-			for (int i = 0; i < nbSoldats; i++) {
+			for (int i = 0; i < nbSoldats ; i++) {
+				System.out.println("size " +this.soldatList.size() );
+				System.out.println("i" +i );
 				this.soldatList.remove(getSoldatList().get(i)); 
 			}
 		}
@@ -89,26 +94,47 @@ public class Armee {
 	}
 	
 
+	public void addArmee(int nbSoldats, int nbCavaliers, int nbCanons) {
+		this.addCanons(nbCanons);
+		this.addCavaliers(nbCavaliers);
+		this.addSoldats(nbSoldats); 
+	}
 	
+	/**
+	 * @param nbSoldats 
+	 * @param nbCavaliers
+	 * @param nbCanons
+	 */
+	public void removeArmee(int nbSoldats, int nbCavaliers, int nbCanons) {
+		this.removeCanons(nbCanons);
+		this.removeCavaliers(nbCavaliers);
+		this.removeSoldats(nbSoldats);
+	}
 	
+	public boolean armeeVide (){
+		if (getNbSoldat()==0 && getNbCavalier()==0 && getNbCanon()==0 ){
+			return true;
+		}
+		return false;
+	}
 	
 	
 	/**
 	 * Getter and setter 
 	 */
-	public int getNbUnite(){
+	public Integer getNbUnite(){
 		return this.soldatList.size() + this.cavalierList.size() + this.canonList.size();
 	}
 	
-	public int getNbSoldat() {
+	public Integer getNbSoldat() {
 		return this.soldatList.size();
 	}
 	
-	public int getNbCavalier() {
+	public Integer getNbCavalier() {
 		return this.cavalierList.size();
 	}
 	
-	public int getNbCanon() {
+	public Integer getNbCanon() {
 		return this.canonList.size();
 	}
 
