@@ -5,13 +5,9 @@ import java.util.ArrayList;
 
 public class Joueur {
 
-//	protected int nbArmee;
 	private int nbTerritoiresCaptures;
 	private int id;
 	private String nom; 
-/*	protected int nbSoldats;
-	protected int nbCavaliers;
-	protected int nbCanons;*/
 	private ArrayList<Territoire> territoireList = new ArrayList<Territoire>();
 	private ArrayList<Region> regionList= new ArrayList<Region>();
 //	private final int COUT_SOLDAT = 1;
@@ -20,7 +16,12 @@ public class Joueur {
 	private Armee armeeRecu =  new Armee();
 	private Integer nbSoldatRenfort; 
 	private Integer nbCavalierRenfort; 
-	private Integer nbCanonRenfort;
+	private Integer nbCanonRenfort;	
+	private int tour=0; 
+	
+	public void incrementTour (){
+		tour++;
+	}
 
 
 	public Joueur(Integer id, String nom) {
@@ -120,6 +121,7 @@ public class Joueur {
 		} else if (this.armeeRecu.getCanonList().size() < nbCanon){
 			System.out.println(" vous n'avez pas assez de canons");
 		} else {
+			//System.out.println(t.getArmee());
 			t.getArmee().addArmee(nbSoldat, nbCavalier, nbCanon);
 			armeeRecu.removeArmee(nbSoldat, nbCavalier, nbCanon);
 		}
@@ -173,6 +175,18 @@ public class Joueur {
 	public void setArmeeRecu(Armee armeeRecu) {
 		this.armeeRecu = armeeRecu;
 	}
+
+
+	public int getTour() {
+		return tour;
+	}
+
+
+	public void setTour(int tour) {
+		this.tour = tour;
+	}
+	
+	
 /*	public Integer getNbSoldatRenfort() {
 		return nbSoldatRenfort;
 	}

@@ -54,12 +54,12 @@ public class Armee {
 	 * @param nbSoldats: nombre de soldats à retirer à la liste 
 	 */
 	public void removeSoldats(int nbSoldats) {
+		
 		if (nbSoldats > this.soldatList.size()){
-			System.out.println("Nombre de soldat à retirer supérieur au nombre que vous avez"); // voir si nécessaire ???
+			System.out.println("Nombre de soldats à retirer supérieur au nombre que vous avez"); // voir si nécessaire ???
 		} else {
-			for (int i = 0; i < nbSoldats ; i++) {
-				System.out.println("size " +this.soldatList.size() );
-				System.out.println("i" +i );
+			int listSize = this.soldatList.size()-1;
+			for (int i = listSize ; i > listSize - nbSoldats ; i--) {
 				this.soldatList.remove(getSoldatList().get(i)); 
 			}
 		}
@@ -71,9 +71,10 @@ public class Armee {
 	 */
 	public void removeCavaliers(int nbCavaliers) {
 		if (nbCavaliers > this.cavalierList.size()){
-			System.out.println("Nombre de cavalier à retirer supérieur au nombre que vous avez");
+			System.out.println("Nombre de cavaliers à retirer supérieur au nombre que vous avez");
 		} else {
-			for (int i = 0; i < nbCavaliers; i++) {
+			int listSize = this.cavalierList.size()-1;
+			for (int i = listSize ; i > listSize - nbCavaliers ; i--) {
 				this.cavalierList.remove(getCavalierList().get(i)); 
 			}
 		}
@@ -85,9 +86,10 @@ public class Armee {
 	 */
 	public void removeCanons(int nbCanons) {
 		if (nbCanons > this.canonList.size()){
-			System.out.println("Nombre de canon à retirer supérieur au nombre que vous avez");
+			System.out.println("Nombre de canons à retirer supérieur au nombre que vous avez");
 		} else {
-			for (int i = 0; i < nbCanons; i++) {
+			int listSize = this.canonList.size()-1;
+			for (int i = listSize ; i > listSize - nbCanons ; i--) {
 				this.canonList.remove(getCanonList().get(i)); 
 			}
 		}

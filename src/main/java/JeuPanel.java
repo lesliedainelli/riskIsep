@@ -30,9 +30,11 @@ public class JeuPanel extends JPanel  {
 	
 	private Joueur joueur = Partie.getInstance().getJoueur();
 	private static final Insets insets = new Insets(0, 0, 0, 0);
-	private JLabel joueurNomLabel, joueurIdLabel, labelNbSoldatRenfort, labelNbCavalierRenfort,labelNbCanonRenfort, labelTerrSelct;
+	private JLabel joueurNomLabel, joueurIdLabel, labelNbSoldatRenfort, labelNbCavalierRenfort,labelNbCanonRenfort, labelTerrSelct, labelNbSoldat,labelNbCavalier,labelNbCanon, labelAppartJoueurNom, labelAppartJoueurId;
 	
 
+	
+	
 	
 
 
@@ -50,6 +52,8 @@ public class JeuPanel extends JPanel  {
 	private JButton positionBtn = new JButton("Position des armées");
 	private JButton deplacementBtn = new JButton("Deplacement vers Territoire alié");
 	private JButton attaqueBtn = new JButton("Attaquer un territoire");
+	
+	
 	
 	
 	/**
@@ -133,11 +137,6 @@ public class JeuPanel extends JPanel  {
 		pPositionRenfort.setBorder(BorderFactory.createTitledBorder("Position des renfort : "));
 		pPositionRenfort.setPreferredSize(new Dimension(420, 105));
 		pPositionRenfort.setLayout(new GridBagLayout());
-		
-/*		setCbAjoutSoldat(initComboBoxInterger(nbSoldatRenfort));
-		setCbAjoutCavalier(initComboBoxInterger(nbCavalierRenfort));
-		setCbAjoutCanon(initComboBoxInterger(nbCanonRenfort));*/
-		
 		addItem(pPositionRenfort, new JLabel("Territoire sélectionné : "), 0, 0, 2, 1, GridBagConstraints.CENTER);
 		addItem(pPositionRenfort, labelTerrSelct , 2, 0, 2, 1, GridBagConstraints.CENTER);
 		addItem(pPositionRenfort, new JLabel("Ajout Soldat"), 0, 1, 1, 1, GridBagConstraints.CENTER);
@@ -148,7 +147,30 @@ public class JeuPanel extends JPanel  {
 		addItem(pPositionRenfort, cbAjoutCanon, 2, 2, 1, 1, GridBagConstraints.CENTER);
 		addItem(pPositionRenfort, okBtnAjoutArmee, 3, 2, 1, 1, GridBagConstraints.WEST);
 
-
+		/**
+		 * Panel : vue territoire
+		 */
+		
+		labelNbSoldat = new JLabel("");
+		labelNbCavalier = new JLabel("");
+		labelNbCanon = new JLabel("");
+		labelAppartJoueurNom = new JLabel("");
+		labelAppartJoueurId = new JLabel("");
+		
+		
+		JPanel pVueTerritoire = new JPanel();
+		pVueTerritoire.setBorder(BorderFactory.createTitledBorder("Territoire : "));
+		pVueTerritoire.setPreferredSize(new Dimension(420, 105));
+		pVueTerritoire.setLayout(new GridBagLayout());
+		addItem(pVueTerritoire, new JLabel("Territoire sélectionné : "), 0, 0, 2, 1, GridBagConstraints.CENTER);
+		addItem(pVueTerritoire, labelTerrSelct , 2, 0, 2, 1, GridBagConstraints.CENTER);
+		addItem(pVueTerritoire, new JLabel("Nombre Soldat"), 0, 1, 1, 1, GridBagConstraints.CENTER);
+		addItem(pVueTerritoire, new JLabel("Nombre Cavalier"), 1, 1, 1, 1, GridBagConstraints.CENTER);
+		addItem(pVueTerritoire, new JLabel("Nombre Canon"), 2, 1, 1, 1, GridBagConstraints.CENTER);
+		addItem(pVueTerritoire, labelNbSoldat, 0, 2, 1, 1, GridBagConstraints.CENTER);
+		addItem(pVueTerritoire, labelNbCavalier, 1, 2, 1, 1, GridBagConstraints.CENTER);
+		addItem(pVueTerritoire, labelNbCanon, 2, 2, 1, 1, GridBagConstraints.CENTER);
+		
 		
 		/**
 		 * Panel : Deplacement vers Territoire alié
@@ -217,17 +239,22 @@ public class JeuPanel extends JPanel  {
 		/**
 		 * Ajout au panel principal
 		 */
+		if(joueur.getTour() == 0){
+			deplacementBtn.setVisible(false);
+			attaqueBtn.setVisible(false);
+		}
 		addItem(this, pJoueur, 0, 0, 1, 1, GridBagConstraints.CENTER);
 		addItem(this, pRenfort, 0, 1, 1, 1, GridBagConstraints.CENTER);
-		addItem(this, positionBtn, 0, 2, 1, 1, GridBagConstraints.CENTER);
-		addItem(this, pPositionRenfort, 0, 2, 1, 1, GridBagConstraints.CENTER);
-		addItem(this, deplacementBtn, 0, 3, 1, 1, GridBagConstraints.CENTER);
-		addItem(this, pDeplacementTerrAlie, 0, 3, 1, 1, GridBagConstraints.CENTER);
-		addItem(this, attaqueBtn, 0, 4, 1, 1, GridBagConstraints.CENTER);
-		addItem(this, pAttaquerTerr, 0, 4, 1, 1, GridBagConstraints.CENTER);
-		addItem(this, finTourBtn, 0, 5, 1, 1, GridBagConstraints.CENTER);
+		addItem(this, pVueTerritoire, 0, 2, 1, 1, GridBagConstraints.CENTER);
+		addItem(this, positionBtn, 0, 3, 1, 1, GridBagConstraints.CENTER);
+		addItem(this, pPositionRenfort, 0, 3, 1, 1, GridBagConstraints.CENTER);
+		addItem(this, deplacementBtn, 0, 4, 1, 1, GridBagConstraints.CENTER);
+		addItem(this, pDeplacementTerrAlie, 0, 4, 1, 1, GridBagConstraints.CENTER);
+		addItem(this, attaqueBtn, 0, 5, 1, 1, GridBagConstraints.CENTER);
+		addItem(this, pAttaquerTerr, 0, 5, 1, 1, GridBagConstraints.CENTER);
+		addItem(this, finTourBtn, 0, 6, 1, 1, GridBagConstraints.CENTER);
 		
-		
+
 		/**
 		 * Au clic sur bouton position:
 		 * panneau position visible et btn pas visible
@@ -236,15 +263,11 @@ public class JeuPanel extends JPanel  {
 			public void actionPerformed(ActionEvent arg0) {
 				pPositionRenfort.setVisible(true);
 				positionBtn.setVisible(false);
-				cbAjoutSoldat.setModel( modelComboBox(joueur.getArmeeRecu().getNbSoldat()) );
-				cbAjoutCavalier.setModel( modelComboBox(joueur.getArmeeRecu().getNbCavalier()) );
-				cbAjoutCanon.setModel( modelComboBox(joueur.getArmeeRecu().getNbCanon()) );
-
-				
-/*				if (Partie.getInstance().isSelected()){
-					System.out.println("Partie.getInstance().getTerritoireSelected().getNom()" +Partie.getInstance().getTerritoireSelected().getNom());
-					labelTerrSelct.setText(Partie.getInstance().getTerritoireSelected().getNom());
-				}*/
+				pDeplacementTerrAlie.setVisible(false);
+				pAttaquerTerr.setVisible(false);
+				cbAjoutSoldat.setModel( modelComboBox(joueur.getArmeeRecu().getNbSoldat()));
+				cbAjoutCavalier.setModel( modelComboBox(joueur.getArmeeRecu().getNbCavalier()));
+				cbAjoutCanon.setModel( modelComboBox(joueur.getArmeeRecu().getNbCanon()));
 			}
 		});
 		 
@@ -254,7 +277,18 @@ public class JeuPanel extends JPanel  {
 					Integer nbCavalier = (Integer) cbAjoutCavalier.getSelectedItem();
 					Integer nbCanon = (Integer) cbAjoutCanon.getSelectedItem();
 					Partie.getInstance().initPlacementArmee(nbSoldat, nbCavalier, nbCanon );
-					System.out.println("ok");
+					// MAJ du nombre de renfort
+					labelNbSoldatRenfort.setText(joueur.getArmeeRecu().getNbSoldat().toString());
+					labelNbCavalierRenfort.setText(joueur.getArmeeRecu().getNbCavalier().toString());
+					labelNbCanonRenfort.setText(joueur.getArmeeRecu().getNbCanon().toString());
+/*					//MAJ vue territoire
+					labelNbSoldat.setText(joueur.getArmee().getNbSoldat().toString());
+					labelNbCavalier.setText(t.getArmee().getNbCavalier().toString());
+					labelNbCanon.setText(t.getArmee().getNbCanon().toString());*/
+					//MAJ comboBox 
+					cbAjoutSoldat.setModel( modelComboBox(joueur.getArmeeRecu().getNbSoldat()) );
+					cbAjoutCavalier.setModel( modelComboBox(joueur.getArmeeRecu().getNbCavalier()) );
+					cbAjoutCanon.setModel( modelComboBox(joueur.getArmeeRecu().getNbCanon()) );
 				}
 			});
 		 
@@ -263,9 +297,14 @@ public class JeuPanel extends JPanel  {
 		
 		deplacementBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				pDeplacementTerrAlie.setVisible(true);
-				deplacementBtn.setVisible(false);
-				//addItem(this, pPositionRenfort, 0, 2, 1, 1, GridBagConstraints.CENTER);
+				if (joueur.getArmeeRecu().armeeVide()){
+					pDeplacementTerrAlie.setVisible(true);
+					deplacementBtn.setVisible(false);
+					pPositionRenfort.setVisible(false);
+					pAttaquerTerr.setVisible(false);
+				} else {
+					System.out.println("Veuillez placer toutes vos armées");
+				}
 			}
 		});
 		
@@ -273,7 +312,8 @@ public class JeuPanel extends JPanel  {
 			public void actionPerformed(ActionEvent arg0) {
 				pAttaquerTerr.setVisible(true);
 				attaqueBtn.setVisible(false);
-				//addItem(this, pPositionRenfort, 0, 2, 1, 1, GridBagConstraints.CENTER);
+				pPositionRenfort.setVisible(false);
+				pDeplacementTerrAlie.setVisible(false);
 			}
 		});
 		
@@ -349,6 +389,7 @@ public class JeuPanel extends JPanel  {
 				labelNbSoldatRenfort.setText(joueur.getArmeeRecu().getNbSoldat().toString());
 				labelNbCavalierRenfort.setText(joueur.getArmeeRecu().getNbCavalier().toString());
 				labelNbCanonRenfort.setText(joueur.getArmeeRecu().getNbCanon().toString());
+				joueur.incrementTour();
 				
 			}
 		});
@@ -563,6 +604,46 @@ public class JeuPanel extends JPanel  {
 
 	public void setCbNbCanonAtt(JComboBox<Integer> cbNbCanonAtt) {
 		this.cbNbCanonAtt = cbNbCanonAtt;
+	}
+
+
+	public JLabel getLabelTerrSelct() {
+		return labelTerrSelct;
+	}
+
+
+	public void setLabelTerrSelct(JLabel labelTerrSelct) {
+		this.labelTerrSelct = labelTerrSelct;
+	}
+
+
+	public JLabel getLabelNbSoldat() {
+		return labelNbSoldat;
+	}
+
+
+	public void setLabelNbSoldat(JLabel labelNbSoldat) {
+		this.labelNbSoldat = labelNbSoldat;
+	}
+
+
+	public JLabel getLabelNbCavalier() {
+		return labelNbCavalier;
+	}
+
+
+	public void setLabelNbCavalier(JLabel labelNbCavalier) {
+		this.labelNbCavalier = labelNbCavalier;
+	}
+
+
+	public JLabel getLabelNbCanon() {
+		return labelNbCanon;
+	}
+
+
+	public void setLabelNbCanon(JLabel labelNbCanon) {
+		this.labelNbCanon = labelNbCanon;
 	}
 
 

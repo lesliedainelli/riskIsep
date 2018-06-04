@@ -100,11 +100,12 @@ public class Partie {
 		}
 		
 		for (Joueur j : joueurList){
-/*			j.setArmeeRecu(armeeRecu);
-			j.setNbSoldatRenfort(nbArmee);
-			j.setNbCavalierRenfort(0);
-			j.setNbCanonRenfort(0);*/
 			j.getArmeeRecu().addArmee(nbArmee, 0, 0); // place tt dans osldat par def
+			for (Territoire t : j.getTerritoireList()){
+				System.out.println("terri " + t.getNom());
+				t.getArmee().addArmee(1, 0, 0); //place 1 soldat sur chaque territoire
+			}
+			j.getArmeeRecu().removeArmee(1, 0, 0);
 		}
 	}
 
@@ -117,7 +118,6 @@ public class Partie {
 	
 	
 	public Territoire getTerritoireSelected() {
-
 		int c = InterfaceCarte.getInstance().getImage().getRGB(sourisX, sourisY);
 		int red = (c & 0x00ff0000) >> 16;
 		int green = (c & 0x0000ff00) >> 8;
@@ -137,15 +137,17 @@ public class Partie {
 
 	
 	public void initPlacementArmee(int nbSoldat, int nbCavalier, int nbCanon) {
-		//while (!this.joueur.getArmeeRecu().armeeVide()) {
-			Territoire tSelect = getTerritoireSelected();
-			if (this.joueur.verifTerritoireAppartient(tSelect)) {
-				this.joueur.placementArmee(tSelect, nbSoldat, nbCavalier, nbCanon);
-				System.out.println("placement terr");
-			//}
+		// verif au moins 1 armee par terr
+		// while (!this.joueur.getArmeeRecu().armeeVide()) {
+		Territoire tSelect = getTerritoireSelected();
+		if (this.joueur.verifTerritoireAppartient(tSelect)) {
+			this.joueur.placementArmee(tSelect, nbSoldat, nbCavalier, nbCanon);
+			System.out.println("Armee placée sur le territoire");
 
+		} else {
+			System.out.println("Territoire n'appartient pas au joueur : " + joueur.getNom() + " " + joueur.getId());
 		}
-		System.out.println("armeee vide");
+
 	}
 	
 	

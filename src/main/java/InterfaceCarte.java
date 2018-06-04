@@ -42,6 +42,8 @@ public class InterfaceCarte extends JFrame implements MouseListener {
     {   return INSTANCE;
     }
 
+	private JPanel pan;
+	private JeuPanel panJeu;
 		
 	public void init() {
 		try {
@@ -53,8 +55,8 @@ public class InterfaceCarte extends JFrame implements MouseListener {
 			e.printStackTrace();
 		}
 		
-		JPanel pan = new CartePanel(image);
-		JeuPanel panJeu = new JeuPanel();
+		pan = new CartePanel(image);
+		panJeu = new JeuPanel();
 		JPanel pMessage = new JPanel();
 		pMessage.setPreferredSize(new Dimension(400, 50));
 		pMessage.setBorder(BorderFactory.createTitledBorder("Message"));
@@ -79,8 +81,13 @@ public class InterfaceCarte extends JFrame implements MouseListener {
 		System.out.println("X:" + sourisX + " " + "Y:" + sourisY);
 		Partie.getInstance().setSourisX(sourisX);
 		Partie.getInstance().setSourisY(sourisY);
-		Partie.getInstance().getTerritoireSelected();
-		
+		Territoire t = Partie.getInstance().getTerritoireSelected();
+		panJeu.getLabelTerrSelct().setText(t.getNom());
+		panJeu.getLabelNbSoldat().setText(t.getArmee().getNbSoldat().toString());
+		panJeu.getLabelNbCavalier().setText(t.getArmee().getNbCavalier().toString());
+		panJeu.getLabelNbCanon().setText(t.getArmee().getNbCanon().toString());
+/*		panJeu.getLabelAppartJoueurId().setText(t.getJoueurProp().getId().toString());
+		panJeu.getLabelAppartJoueurNom().setText(t.getJoueurProp().getNom());*/
 	}
 
 	

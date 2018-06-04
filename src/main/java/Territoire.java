@@ -9,9 +9,10 @@ public class Territoire {
 	private ArrayList <String> territoiresAdjacents;  
 	private Joueur joueurProp; 
 	private int nbArmee=1;
-	private Armee armee;
+	private Armee armee= new Armee();
 	private int milieu_x; // pour pouvoir dessiner au centre du territoire 
 	private int milieu_y;
+
 	
 	public Territoire(String nom, CodeRVB codeRVB, ArrayList<String> territoiresAdjacents) {
 		this.nom = nom;
@@ -115,6 +116,18 @@ public class Territoire {
 
 	public void setArmee(Armee armee) {
 		this.armee = armee;
+	}
+
+
+
+	public Joueur getJoueurProp() {
+		return joueurProp;
+	}
+
+
+
+	public void setJoueurProp(Joueur joueurProp) {
+		this.joueurProp = joueurProp;
 	}
 	
 
