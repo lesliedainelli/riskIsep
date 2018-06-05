@@ -92,8 +92,8 @@ public class Territoires {
 		listTerritoiresAdjacents.add("Etats de l'Ouest"); 
 		terr = new Territoire("Amerique centrale", new CodeRVB(251, 255, 13), listTerritoiresAdjacents); 
 		listTerritoires.add(terr);
-		terr.setMilieu_x(146);
-		terr.setMilieu_y(287);
+		terr.setMilieu_x(144);
+		terr.setMilieu_y(273);
 
 		//4
 		listTerritoiresAdjacents = new ArrayList<String>(); 
@@ -150,8 +150,8 @@ public class Territoires {
 		listTerritoiresAdjacents.add("Etats de l'Est"); 
 		terr = new Territoire("Quebec", new CodeRVB(252,236, 127), listTerritoiresAdjacents); 
 		listTerritoires.add(terr);
-		terr.setMilieu_x(245);
-		terr.setMilieu_y(160);
+		terr.setMilieu_x(239);
+		terr.setMilieu_y(148);
 
 		//9
 		listTerritoiresAdjacents = new ArrayList<String>(); 
@@ -179,8 +179,8 @@ public class Territoires {
 		listTerritoiresAdjacents.add("Scandinavie"); 
 		terr = new Territoire("Grande Bretagne", new CodeRVB(21, 83, 229), listTerritoiresAdjacents); 
 		listTerritoires.add(terr); 
-		terr.setMilieu_x(358);
-		terr.setMilieu_y(208);
+		terr.setMilieu_x(351);
+		terr.setMilieu_y(194);
 
 		//2
 		listTerritoiresAdjacents = new ArrayList<String>(); 
@@ -189,8 +189,8 @@ public class Territoires {
 		listTerritoiresAdjacents.add("Grande Bretagne"); 
 		terr = new Territoire("Islande", new CodeRVB(100, 172, 188), listTerritoiresAdjacents); 
 		listTerritoires.add(terr); 
-		terr.setMilieu_x(364);
-		terr.setMilieu_y(133);
+		terr.setMilieu_x(360);
+		terr.setMilieu_y(120);
 
 		//3
 		listTerritoiresAdjacents = new ArrayList<String>(); 
@@ -247,8 +247,8 @@ public class Territoires {
 		listTerritoiresAdjacents.add("Afrique du Nord"); 
 		terr = new Territoire("Europe Occidentale", new CodeRVB(28,97, 113), listTerritoiresAdjacents); 
 		listTerritoires.add(terr);
-		terr.setMilieu_x(364);
-		terr.setMilieu_y(282);
+		terr.setMilieu_x(360);
+		terr.setMilieu_y(272);
 
 
 
@@ -311,8 +311,8 @@ public class Territoires {
 		listTerritoiresAdjacents.add("Mongolie"); 
 		terr = new Territoire("Japon", new CodeRVB(128,255, 103), listTerritoiresAdjacents); 
 		listTerritoires.add(terr);
-		terr.setMilieu_x(773);
-		terr.setMilieu_y(221);
+		terr.setMilieu_x(766);
+		terr.setMilieu_y(207);
 
 		//6
 		listTerritoiresAdjacents = new ArrayList<String>(); 
@@ -435,8 +435,8 @@ public class Territoires {
 		listTerritoiresAdjacents.add("Afrique de l'Est"); 
 		terr = new Territoire("Madagascar", new CodeRVB(195,130,0), listTerritoiresAdjacents); 
 		listTerritoires.add(terr);
-		terr.setMilieu_x(537);
-		terr.setMilieu_y(511);
+		terr.setMilieu_x(532);
+		terr.setMilieu_y(499);
 
 		//5
 		listTerritoiresAdjacents = new ArrayList<String>(); 

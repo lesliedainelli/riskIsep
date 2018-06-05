@@ -17,7 +17,7 @@ public class Joueur {
 	private Integer nbSoldatRenfort; 
 	private Integer nbCavalierRenfort; 
 	private Integer nbCanonRenfort;	
-	private int tour=0; 
+	private Integer tour = 0; 
 	
 	public void incrementTour (){
 		tour++;
@@ -177,12 +177,12 @@ public class Joueur {
 	}
 
 
-	public int getTour() {
+	public Integer getTour() {
 		return tour;
 	}
 
 
-	public void setTour(int tour) {
+	public void setTour(Integer tour) {
 		this.tour = tour;
 	}
 	

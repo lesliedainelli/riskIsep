@@ -1,5 +1,7 @@
 package main.java;
 
+import java.util.Random;
+
 public class Unite {
 
 	// final???
@@ -29,6 +31,11 @@ public class Unite {
 		} else {
 			this.nbMvtTour--;
 		}
+	}
+	
+	public int nbAleatoire (){
+		Random r = new Random();
+		return PuissanceMin + r.nextInt(PuissanceMax - PuissanceMin);
 	}
 
 	public int getPuissanceMin() {

@@ -18,6 +18,8 @@ import javax.imageio.ImageIO;
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -57,6 +59,7 @@ public class InterfacePrincipale extends JFrame{
 	private JTextField [] tabJTextField= {txtNomJoueur1,txtNomJoueur2, txtNomJoueur3, txtNomJoueur4, txtNomJoueur5, txtNomJoueur6};
 	
 	
+	
 //	private JTextField txtNomJoueur1, txtNomJoueur2, txtNomJoueur3, txtNomJoueur4, txtNomJoueur5, txtNomJoueur6; 
 //	private JLabel [] tabJLabel= {labelNomJoueur1,labelNomJoueur2, labelNomJoueur3, labelNomJoueur4, labelNomJoueur5, labelNomJoueur6};
 	
@@ -64,7 +67,7 @@ public class InterfacePrincipale extends JFrame{
 
 		
 		this.setTitle("Jeu RISK");
-		this.setSize(800, 500);
+		this.setSize(800, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setLayout(new FlowLayout());
@@ -89,7 +92,10 @@ public class InterfacePrincipale extends JFrame{
 		panNbJoueur.add(nbJoueur6);
 		panNbJoueur.add(validerNbJoueurBtn);
 
-		
+        Icon iconTitre = new ImageIcon("/Users/lesliedainelli/Documents/workspace/risk/src/main/resources/titre.png");
+        JLabel labelTitre = new JLabel();
+        labelTitre.setIcon(iconTitre);
+        this.getContentPane().add(labelTitre);
 		this.getContentPane().add(panNbJoueur);
 		this.getContentPane().add(panNomJoueur);
 		

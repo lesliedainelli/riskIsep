@@ -103,9 +103,10 @@ public class Partie {
 			j.getArmeeRecu().addArmee(nbArmee, 0, 0); // place tt dans osldat par def
 			for (Territoire t : j.getTerritoireList()){
 				System.out.println("terri " + t.getNom());
-				t.getArmee().addArmee(1, 0, 0); //place 1 soldat sur chaque territoire
+				j.placementArmee(t, 1, 0, 0);
+				//t.getArmee().addArmee(1, 0, 0); //place 1 soldat sur chaque territoire
 			}
-			j.getArmeeRecu().removeArmee(1, 0, 0);
+			//j.getArmeeRecu().removeArmee(1, 0, 0);
 		}
 	}
 
@@ -153,15 +154,31 @@ public class Partie {
 	
 	
 	public void deplacementVersTerritoireAllie (Territoire tDep, Territoire tArr, int nbSoldat, int nbCavalier, int nbCanon){
-		if (this.joueur.verifTerritoireAppartient(tDep) && this.joueur.verifTerritoireAppartient(tArr)) {
-			tDep.getArmee().addArmee(nbSoldat, nbCavalier, nbCanon);
-			tArr.getArmee().removeArmee(nbSoldat, nbCavalier, nbCanon);
+		if (this.joueur.verifTerritoireAppartient(tDep) && this.joueur.verifTerritoireAppartient(tArr) && tDep.verifTerritoireAdj(tArr)) {
+			tArr.getArmee().addArmee(nbSoldat, nbCavalier, nbCanon);
+			tDep.getArmee().removeArmee(nbSoldat, nbCavalier, nbCanon);
 			//verif nb deplacemnt
 		} else {
 			System.out.println("ces territoires ne vous appartiennent pas");
 		}
 	}
 
+	
+	public void attaque (Territoire tDep, Territoire tArr, int nbSoldat, int nbCavalier, int nbCanon){
+		if (this.joueur.verifTerritoireAppartient(tDep)  && tDep.verifTerritoireAdj(tArr)) {
+			if (tArr.getArmee().getNbUnite()>1){
+				
+			} else { //forcement un soldat
+				int x = tArr.getArmee().getSoldatList().get(0).nbAleatoire();
+			}
+			
+			
+			tDep.getArmee().addArmee(nbSoldat, nbCavalier, nbCanon);
+			tArr.getArmee().removeArmee(nbSoldat, nbCavalier, nbCanon);
+		} else {
+			System.out.println("ce territoire ne vous appartiennent pas / pas adjacent");
+		}
+	}
 
 
 	
