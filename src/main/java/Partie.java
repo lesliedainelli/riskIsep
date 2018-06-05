@@ -137,8 +137,6 @@ public class Partie {
 
 	
 	public void initPlacementArmee(int nbSoldat, int nbCavalier, int nbCanon) {
-		// verif au moins 1 armee par terr
-		// while (!this.joueur.getArmeeRecu().armeeVide()) {
 		Territoire tSelect = getTerritoireSelected();
 		if (this.joueur.verifTerritoireAppartient(tSelect)) {
 			this.joueur.placementArmee(tSelect, nbSoldat, nbCavalier, nbCanon);
@@ -155,7 +153,13 @@ public class Partie {
 	
 	
 	public void deplacementVersTerritoireAllie (Territoire tDep, Territoire tArr, int nbSoldat, int nbCavalier, int nbCanon){
-		//tDep
+		if (this.joueur.verifTerritoireAppartient(tDep) && this.joueur.verifTerritoireAppartient(tArr)) {
+			tDep.getArmee().addArmee(nbSoldat, nbCavalier, nbCanon);
+			tArr.getArmee().removeArmee(nbSoldat, nbCavalier, nbCanon);
+			//verif nb deplacemnt
+		} else {
+			System.out.println("ces territoires ne vous appartiennent pas");
+		}
 	}
 
 

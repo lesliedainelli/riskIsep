@@ -73,10 +73,10 @@ public class Joueur {
 	 * Calcul du nombre de renforts au début de chaque tour
 	 * Par défaut tous ces renforts sont des soldats que l'on pourra échanger après
 	 */
-	public void receptionRenfort(Joueur joueur ){
-		int nbTerritoire = (int) Math.floor(joueur.getTerritoireList().size()/3);
-		int nbRegion = (int) Math.floor(joueur.getRegionList().size()/2);
-		int nbCapture = joueur.getNbTerritoiresCaptures(); // a verif pour histoire des 50 %
+	public void receptionRenfort(){
+		int nbTerritoire = (int) Math.floor(this.getTerritoireList().size()/3);
+		int nbRegion = (int) Math.floor(this.getRegionList().size()/2);
+		int nbCapture = this.getNbTerritoiresCaptures(); // a verif pour histoire des 50 %
 		int somme = nbTerritoire+nbRegion+nbCapture;
 		if (somme<2){
 			this.armeeRecu.addSoldats(2);
