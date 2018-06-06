@@ -1,5 +1,6 @@
 package main.java;
 
+import java.util.Comparator;
 import java.util.Random;
 
 public class Unite {
@@ -11,6 +12,7 @@ public class Unite {
 	protected int prioriteDEF;
 	protected int mvtTour;
 	protected int nbMvtTour;
+	protected int numAlea;
 
 	public Unite(int puissanceMin, int puissanceMax, int prioriteATT, int prioriteDEF, int mvtTour) {
 		super();
@@ -33,11 +35,22 @@ public class Unite {
 		}
 	}
 	
-	public int nbAleatoire (){
+	public void nbAleatoire (){
 		Random r = new Random();
-		return PuissanceMin + r.nextInt(PuissanceMax - PuissanceMin);
+		int result = PuissanceMin + r.nextInt(PuissanceMax - PuissanceMin);
+		numAlea = result;
+		//return result;
 	}
 
+	public static Comparator <Unite> comparatorNbAlea = new Comparator <Unite> (){
+		
+		@Override 
+		public int compare(Unite u1, Unite u2){
+			 return (int) (u2.getNumAlea() - u1.getNumAlea());
+			//return u2.getNumAlea().compareTo(u1.getNumAlea());
+		}
+	};
+	
 	public int getPuissanceMin() {
 		return PuissanceMin;
 	}
@@ -85,5 +98,16 @@ public class Unite {
 	public void setNbMvtTour(int nbMvtTour) {
 		this.nbMvtTour = nbMvtTour;
 	}
+
+	public int getNumAlea() {
+		return numAlea;
+	}
+
+	public void setNumAlea(int numAlea) {
+		this.numAlea = numAlea;
+	}
+
+
+	
 
 }

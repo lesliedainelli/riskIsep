@@ -27,6 +27,9 @@ public class Territoire {
 	
 	
 	
+	/** Permet de vérifier s'il y a au moins une armée sur un territoire 
+	 * @return true s'il y a au moins une armée, false sinon 
+	 */
 	public boolean verifAuMoinsUnearmee() {
 		if (this.nbArmee <1){
 			System.out.println("Le nombre d'armées doit être supérieur à 1");
