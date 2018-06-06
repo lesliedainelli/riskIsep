@@ -3,18 +3,15 @@ package main.java;
 
 import java.util.ArrayList;
 
+/**
+ * La classe Armée est constituée de la liste des unités (canon, soldat, cavalier).
+ * On peut ajouter ou supprimer une unité ou armée, et savoir si elle est vide ou non.
+ */
 public class Armee {
 
 	private ArrayList<Soldat> soldatList = new ArrayList<Soldat>();
 	private ArrayList<Cavalier> cavalierList = new ArrayList<Cavalier>();
 	private ArrayList<Canon> canonList = new ArrayList<Canon>();
-
-/*	public Armee(ArrayList<Soldat> soldatList, ArrayList<Cavalier> cavalierList, ArrayList<Canon> canonList) {
-		super();
-		this.soldatList = soldatList;
-		this.cavalierList = cavalierList;
-		this.canonList = canonList;
-	}*/
 	
 	public Armee() {
 	}
@@ -96,13 +93,18 @@ public class Armee {
 	}
 	
 
+	/** Permet d'ajouter une armée complète constituée de soldats, cavaliers, canons
+	 * @param nbSoldats
+	 * @param nbCavaliers
+	 * @param nbCanons
+	 */
 	public void addArmee(int nbSoldats, int nbCavaliers, int nbCanons) {
 		this.addCanons(nbCanons);
 		this.addCavaliers(nbCavaliers);
 		this.addSoldats(nbSoldats); 
 	}
 	
-	/**
+	/** Permet de retirer une armée complète constituée de soldats, cavaliers, canons
 	 * @param nbSoldats 
 	 * @param nbCavaliers
 	 * @param nbCanons
@@ -113,6 +115,9 @@ public class Armee {
 		this.removeSoldats(nbSoldats);
 	}
 	
+	/** Permet de savoir si une armée est vide 
+	 * @return : true si elle vide, false sinon
+	 */
 	public boolean armeeVide (){
 		if (getNbSoldat()==0 && getNbCavalier()==0 && getNbCanon()==0 ){
 			return true;

@@ -46,6 +46,9 @@ public class Partie {
 	}
 
 
+	/**
+	 * @param nomJoueursList
+	 */
 	public void initListJoueurs(ArrayList <String> nomJoueursList) {
 		for (int i = 1; i <= nbJoueur; i++) {
 			this.joueurList.add(new Joueur(i, nomJoueursList.get(i-1))); // reccup avec textfield
@@ -164,19 +167,83 @@ public class Partie {
 	}
 
 	
-	public void attaque (Territoire tDep, Territoire tArr, int nbSoldat, int nbCavalier, int nbCanon){
-		if (this.joueur.verifTerritoireAppartient(tDep)  && tDep.verifTerritoireAdj(tArr)) {
-			if (tArr.getArmee().getNbUnite()>1){
+	public void attaque (Territoire tAtt, Territoire tDef, int nbSoldat, int nbCavalier, int nbCanon){
+		if (this.joueur.verifTerritoireAppartient(tAtt)  && tAtt.verifTerritoireAdj(tDef)) {
+			ArrayList <Unite> listAttaquant = new ArrayList <Unite> ();
+			ArrayList <Unite> listDefenseur = new ArrayList <Unite> ();
+			
+			// Incrémente la liste des attaquants
+			for (int i = 0 ; i < nbSoldat ; i++){
+				tAtt.getArmee().getSoldatList().get(i).getNumAlea();
+				listAttaquant.add(tAtt.getArmee().getSoldatList().get(i));
+			}
+			for (int i = 0 ; i < nbCavalier ; i++){
+				tAtt.getArmee().getCavalierList().get(i).getNumAlea();
+				listAttaquant.add(tAtt.getArmee().getCavalierList().get(i));
+			}
+			for (int i = 0 ; i < nbCanon ; i++){
+				tAtt.getArmee().getCanonList().get(i).getNumAlea();
+				listAttaquant.add(tAtt.getArmee().getCanonList().get(i));
+			}
+			Collections.sort(listAttaquant , Unite.comparatorNbAlea);
+			
+			// Incrémente la liste des défenseur
+			
+			//listDefenseur.add(tArr.getArmee().getNbUnite())
+			
+			int x = compareSizeArrayList(listAttaquant, listDefenseur);
+
+			for (int i = 0 ; i < x ; i++ ){
+				int nbSoldatAtt = 0;
+				int nbCavalierAtt = 0;
+				int nbCanonAtt = 0;
+				int nbSoldatDef = 0;
+				int nbCavalierDef = 0;
+				int nbCanonDef = 0;
 				
-			} else { //forcement un soldat
-				int x = tArr.getArmee().getSoldatList().get(0).nbAleatoire();
+				//defenseur gagne ou égalité (def gagne) 
+				if (listAttaquant.get(i).getNumAlea() < listDefenseur.get(i).getNumAlea() || listAttaquant.get(i).getNumAlea() == listDefenseur.get(i).getNumAlea()){
+					if (listAttaquant.get(i) instanceof Soldat) {
+						nbSoldatAtt = 1; 
+					}
+					if (listAttaquant.get(i) instanceof Cavalier){
+						nbCavalierAtt = 1; 
+					}
+					if (listAttaquant.get(i) instanceof Canon){
+						nbCanonAtt = 1; 
+					}
+					tAtt.getArmee().removeArmee(nbSoldatAtt, nbCavalierAtt, nbCanonAtt);
+					tDef.getArmee().addArmee(nbSoldatAtt, nbCavalierAtt, nbCanonAtt);
+					
+				// attaquant gagne	
+				} else {
+					if (listDefenseur.get(i) instanceof Soldat) {
+						nbSoldatDef = 1; 
+					}
+					if (listDefenseur.get(i) instanceof Cavalier){
+						nbCavalierDef = 1; 
+					}
+					if (listDefenseur.get(i) instanceof Canon){
+						nbCanonDef = 1; 
+					}
+					tDef.getArmee().removeArmee(nbSoldatDef, nbCavalierDef, nbCanonDef);
+					tAtt.getArmee().addArmee(nbSoldatDef, nbCavalierDef, nbCanonDef);	
+				}
 			}
 			
-			
-			tDep.getArmee().addArmee(nbSoldat, nbCavalier, nbCanon);
-			tArr.getArmee().removeArmee(nbSoldat, nbCavalier, nbCanon);
 		} else {
 			System.out.println("ce territoire ne vous appartiennent pas / pas adjacent");
+		}
+	}
+	
+	
+	
+	
+	public int compareSizeArrayList (ArrayList <Unite> listA, ArrayList <Unite> listB){
+		if (listA.size() > listB.size()){
+			return listB.size();
+		} else { 
+			return listA.size();
 		}
 	}
 

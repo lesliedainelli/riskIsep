@@ -14,6 +14,11 @@ public class Territoire {
 	private int milieu_y;
 
 	
+	/** Constructeur 
+	 * @param nom : nom du territoire
+	 * @param codeRVB : code couleur du territoire
+	 * @param territoiresAdjacents
+	 */
 	public Territoire(String nom, CodeRVB codeRVB, ArrayList<String> territoiresAdjacents) {
 		this.nom = nom;
 		this.codeRVB = codeRVB;
