@@ -47,7 +47,6 @@ public class Territoire {
 		return false;
 	}
 
-	//public boolean verifNbArmee(int )
 	
 	public boolean verifTerritoireAppartient(Joueur joueur){
 		if (this.joueurProp == joueur ){
@@ -57,7 +56,12 @@ public class Territoire {
 	}
 	
 
-
+	public boolean estConquis(){
+		if (this.armee.armeeVide()){
+			return true; 
+		}
+		return false;
+	}
 
 
 	public String getNom() {

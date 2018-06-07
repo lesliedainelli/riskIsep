@@ -20,12 +20,27 @@ import javax.swing.JPanel;
 	import javax.swing.JPanel;
 	 
 	public class CartePanel extends JPanel {
+		
+		
 	     
-	    protected Image buffer;    
+	    private Image buffer;    
+	    private ArrayList <DrawIdJoueur> list = Partie.getInstance().getDrawIdJoueurList();
 	     
 	    public Image getBuffer() {
 			return buffer;
 		}
+	    
+/*	*//** Constructeur prive *//*
+	private CartePanel() {
+	}
+
+	*//** Instance unique pre-initialisee *//*
+	private static CartePanel INSTANCE = new CartePanel();
+
+	*//** Point d'acces pour l'instance unique du singleton *//*
+	public static CartePanel getInstance() {
+		return INSTANCE;
+	}*/
 
 		public CartePanel(Image buffer){
 	        this.buffer = buffer;
@@ -36,11 +51,18 @@ import javax.swing.JPanel;
 	      
 	    	super.paintComponent(g);
 	    	 g.drawImage(buffer,0,0,null);
-	    	 ArrayList <DrawIdJoueur> list = Partie.getInstance().getDrawIdJoueurList();
 	    	 for (DrawIdJoueur d : list){
 	    		 g.drawString(d.getIdJoueur(), d.getMilieu_x(),d.getMilieu_y());
 	    	 }
 	     }
+
+		public ArrayList<DrawIdJoueur> getList() {
+			return list;
+		}
+
+		public void setList(ArrayList<DrawIdJoueur> list) {
+			this.list = list;
+		}
 	    
 
 	 

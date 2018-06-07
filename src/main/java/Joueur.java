@@ -2,6 +2,7 @@ package main.java;
 
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Joueur {
 
@@ -10,13 +11,9 @@ public class Joueur {
 	private String nom; 
 	private ArrayList<Territoire> territoireList = new ArrayList<Territoire>();
 	private ArrayList<Region> regionList= new ArrayList<Region>();
-//	private final int COUT_SOLDAT = 1;
 	private final int COUT_CAVALIER = 3;
 	private final int COUT_CANON=7;
 	private Armee armeeRecu =  new Armee();
-	private Integer nbSoldatRenfort; 
-	private Integer nbCavalierRenfort; 
-	private Integer nbCanonRenfort;	
 	private Integer tour = 0; 
 	
 	public void incrementTour (){
@@ -76,16 +73,25 @@ public class Joueur {
 	public void receptionRenfort(){
 		int nbTerritoire = (int) Math.floor(this.getTerritoireList().size()/3);
 		int nbRegion = (int) Math.floor(this.getRegionList().size()/2);
-		int nbCapture = this.getNbTerritoiresCaptures(); // a verif pour histoire des 50 %
+		int nbCapture = calculBonusCapture(); // a verif pour histoire des 50 %
 		int somme = nbTerritoire+nbRegion+nbCapture;
 		if (somme<2){
 			this.armeeRecu.addSoldats(2);
-			//this.nbSoldatRecu = 2;
 		}else {
 			this.armeeRecu.addSoldats(somme);
-			//this.nbSoldatRecu = somme;
 		}
 	}
+	
+	public int calculBonusCapture (){
+		Random r = new Random();
+		int bonus =0;
+		for (int i=0; i< this.nbTerritoiresCaptures; i++){
+			bonus = bonus + 0 + r.nextInt(1 - 0);
+		}
+		return bonus;
+	}
+	
+	
 	
 	
 	public void echangePourCavalier(int nbCavalier) {

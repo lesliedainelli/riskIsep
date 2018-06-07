@@ -16,6 +16,8 @@ public class Partie {
 	private int countJoueur=0;
 	private Joueur joueur; 
 	private boolean isSelected = false;
+	private ArrayList <Unite> listAttaquant = new ArrayList <Unite> ();
+	private ArrayList <Unite> listDefenseur = new ArrayList <Unite> ();
 
 	
 	/** Constructeur prive */
@@ -54,7 +56,6 @@ public class Partie {
 			this.joueurList.add(new Joueur(i, nomJoueursList.get(i-1))); // reccup avec textfield
 		}
 		this.joueur = joueurList.get(0);
-		System.out.println("initListJoueurs ");
 	}
 	
 	
@@ -70,7 +71,6 @@ public class Partie {
 			joueurList.get(j).addTerritoire(t);
 			j++;
 		}
-		System.out.println("ok ");
 	}
 	
 	public void dessinTerritoire (){
@@ -80,6 +80,20 @@ public class Partie {
 				drawIdJoueurList.add(d);
 			}
 		}
+	}
+	
+	public ArrayList<DrawIdJoueur> dessinTerritoireVictoire (Territoire tDef, Joueur joueur){
+		for (Joueur j : joueurList ){
+			for (Territoire t : j.getTerritoireList()){
+				if(t.equals(tDef)){
+					DrawIdJoueur d = new DrawIdJoueur (joueur.getId(),t.getMilieu_x(),t.getMilieu_y());
+				} else {
+					DrawIdJoueur d = new DrawIdJoueur (j.getId(),t.getMilieu_x(),t.getMilieu_y());
+					drawIdJoueurList.add(d);
+				}
+			}
+		}
+		return drawIdJoueurList;
 	}
 	
 	public void initArmees(){
@@ -107,9 +121,7 @@ public class Partie {
 			for (Territoire t : j.getTerritoireList()){
 				System.out.println("terri " + t.getNom());
 				j.placementArmee(t, 1, 0, 0);
-				//t.getArmee().addArmee(1, 0, 0); //place 1 soldat sur chaque territoire
 			}
-			//j.getArmeeRecu().removeArmee(1, 0, 0);
 		}
 	}
 
@@ -147,7 +159,8 @@ public class Partie {
 			System.out.println("Armee placée sur le territoire");
 
 		} else {
-			System.out.println("Territoire n'appartient pas au joueur : " + joueur.getNom() + " " + joueur.getId());
+			InterfaceCarte.getInstance().getLabelMessage().setText("Territoire n'appartient pas au joueur : " + joueur.getNom() + " " + joueur.getId());
+			System.out.println("Ce territoire n'appartient pas au joueur : " + joueur.getNom() + " " + joueur.getId());
 		}
 
 	}
@@ -162,6 +175,7 @@ public class Partie {
 			tDep.getArmee().removeArmee(nbSoldat, nbCavalier, nbCanon);
 			//verif nb deplacemnt
 		} else {
+			InterfaceCarte.getInstance().getLabelMessage().setText("Ces territoires ne vous appartiennent pas.");
 			System.out.println("ces territoires ne vous appartiennent pas");
 		}
 	}
@@ -169,27 +183,56 @@ public class Partie {
 	
 	public void attaque (Territoire tAtt, Territoire tDef, int nbSoldat, int nbCavalier, int nbCanon){
 		if (this.joueur.verifTerritoireAppartient(tAtt)  && tAtt.verifTerritoireAdj(tDef)) {
-			ArrayList <Unite> listAttaquant = new ArrayList <Unite> ();
-			ArrayList <Unite> listDefenseur = new ArrayList <Unite> ();
+			listAttaquant.clear();
+			listDefenseur.clear();
 			
 			// Incrémente la liste des attaquants
 			for (int i = 0 ; i < nbSoldat ; i++){
-				tAtt.getArmee().getSoldatList().get(i).getNumAlea();
+				tAtt.getArmee().getSoldatList().get(i).nbAleatoire();
 				listAttaquant.add(tAtt.getArmee().getSoldatList().get(i));
 			}
 			for (int i = 0 ; i < nbCavalier ; i++){
-				tAtt.getArmee().getCavalierList().get(i).getNumAlea();
+				tAtt.getArmee().getCavalierList().get(i).nbAleatoire();
 				listAttaquant.add(tAtt.getArmee().getCavalierList().get(i));
 			}
 			for (int i = 0 ; i < nbCanon ; i++){
-				tAtt.getArmee().getCanonList().get(i).getNumAlea();
+				tAtt.getArmee().getCanonList().get(i).nbAleatoire();
 				listAttaquant.add(tAtt.getArmee().getCanonList().get(i));
 			}
 			Collections.sort(listAttaquant , Unite.comparatorNbAlea);
 			
 			// Incrémente la liste des défenseur
 			
-			//listDefenseur.add(tArr.getArmee().getNbUnite())
+			int compteur =2; //max 2 défenseur
+			//while (compteur != 0){
+				for (int i =  0 ; i< tDef.getArmee().getSoldatList().size() ; i++){ //priotité 1
+					if (compteur==0){
+						break;
+					}
+					tDef.getArmee().getSoldatList().get(i).nbAleatoire();
+					listDefenseur.add(tDef.getArmee().getSoldatList().get(i));
+					compteur --;
+				} 
+				
+				for (int i =  0 ; i< tDef.getArmee().getCanonList().size() ; i++){//priotité 2
+					if (compteur==0){
+						break;
+					}
+					tDef.getArmee().getCanonList().get(i).nbAleatoire();
+					listDefenseur.add(tDef.getArmee().getCanonList().get(i));
+					compteur --;
+				}
+				for (int i =  0 ; i< tDef.getArmee().getCavalierList().size() ; i++){//priotité 3
+					if (compteur==0){
+						break;
+					}
+					tDef.getArmee().getCavalierList().get(i).nbAleatoire();
+					listDefenseur.add(tDef.getArmee().getCavalierList().get(i));
+					compteur --;
+				}
+				//compteur = 0 ; // car veut dire qu'il reste qu'une unité
+			//}
+		
 			
 			int x = compareSizeArrayList(listAttaquant, listDefenseur);
 
@@ -228,15 +271,25 @@ public class Partie {
 					}
 					tDef.getArmee().removeArmee(nbSoldatDef, nbCavalierDef, nbCanonDef);
 					tAtt.getArmee().addArmee(nbSoldatDef, nbCavalierDef, nbCanonDef);	
+					if (tDef.estConquis()){
+						//tDef
+						//changer id 
+						joueur.gagneTerritoire(); // nb  capture
+						InterfaceCarte.getInstance().getLabelMessage().setText("Territoire conquis.");
+						//CartePanel.getInstance().setList(dessinTerritoireVictoire(tDef, joueur));
+						//CartePanel.getInstance().repaint();
+						
+					}
 				}
 			}
 			
 		} else {
+			InterfaceCarte.getInstance().getLabelMessage().setText("ce territoire ne vous appartiennent pas / pas adjacent.");
 			System.out.println("ce territoire ne vous appartiennent pas / pas adjacent");
 		}
 	}
 	
-	
+
 	
 	
 	public int compareSizeArrayList (ArrayList <Unite> listA, ArrayList <Unite> listB){
@@ -306,8 +359,6 @@ public class Partie {
 	}
 
 
-
-
 	public int getSourisY() {
 		return sourisY;
 	}
@@ -332,6 +383,26 @@ public class Partie {
 
 	public void setSelected(boolean isSelected) {
 		this.isSelected = isSelected;
+	}
+
+
+	public ArrayList<Unite> getListAttaquant() {
+		return listAttaquant;
+	}
+
+
+	public void setListAttaquant(ArrayList<Unite> listAttaquant) {
+		this.listAttaquant = listAttaquant;
+	}
+
+
+	public ArrayList<Unite> getListDefenseur() {
+		return listDefenseur;
+	}
+
+
+	public void setListDefenseur(ArrayList<Unite> listDefenseur) {
+		this.listDefenseur = listDefenseur;
 	}
 
 

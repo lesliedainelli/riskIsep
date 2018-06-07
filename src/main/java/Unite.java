@@ -12,7 +12,7 @@ public class Unite {
 	protected int prioriteDEF;
 	protected int mvtTour;
 	protected int nbMvtTour;
-	protected int numAlea;
+	protected Integer numAlea;
 
 	public Unite(int puissanceMin, int puissanceMax, int prioriteATT, int prioriteDEF, int mvtTour) {
 		super();
@@ -37,7 +37,7 @@ public class Unite {
 	
 	public void nbAleatoire (){
 		Random r = new Random();
-		int result = PuissanceMin + r.nextInt(PuissanceMax - PuissanceMin);
+		Integer result = PuissanceMin + r.nextInt(PuissanceMax - PuissanceMin);
 		numAlea = result;
 		//return result;
 	}
@@ -99,11 +99,11 @@ public class Unite {
 		this.nbMvtTour = nbMvtTour;
 	}
 
-	public int getNumAlea() {
+	public Integer getNumAlea() {
 		return numAlea;
 	}
 
-	public void setNumAlea(int numAlea) {
+	public void setNumAlea(Integer numAlea) {
 		this.numAlea = numAlea;
 	}
 

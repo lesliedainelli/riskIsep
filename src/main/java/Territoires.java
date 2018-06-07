@@ -251,10 +251,6 @@ public class Territoires {
 		terr.setMilieu_y(272);
 
 
-
-
-
-
 		/**
 		 * Asie
 		 */

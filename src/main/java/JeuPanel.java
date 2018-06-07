@@ -27,7 +27,7 @@ import javax.swing.JPanel;
 public class JeuPanel extends JPanel  {
 	
 	//Partie partie = new Partie();
-	private Territoire tDep, tArr, tDepAtt, tArrAtt;
+	private Territoire tDep, tArr, tAtt, tDef;
 	private Joueur joueur = Partie.getInstance().getJoueur();
 	private static final Insets insets = new Insets(0, 0, 0, 0);
 	private JLabel joueurNomLabel, joueurIdLabel, labelNbSoldatRenfort, labelNbCavalierRenfort, labelNbCanonRenfort,
@@ -38,6 +38,20 @@ public class JeuPanel extends JPanel  {
 	
 	private JLabel labelTerrDepAtt = new JLabel();
 	private JLabel labelTerrArrAtt = new JLabel();
+	private JLabel labelNomAtt5_0 = new JLabel();
+	private JLabel labelNomAtt6_0 = new JLabel();
+	private JLabel labelNomAtt7_0 = new JLabel();
+	private JLabel labelNumAtt5_1 = new JLabel();
+	private JLabel labelNumAtt6_1 = new JLabel();
+	private JLabel labelNumAtt7_1 = new JLabel();
+	private JLabel labelNomDef5_2 = new JLabel();
+	private JLabel labelNomDef6_2 = new JLabel();
+	//private JLabel labelNomDef7_2 = new JLabel();
+	private JLabel labelNumDef5_3 = new JLabel();
+	private JLabel labelNumDef6_3 = new JLabel();
+	//private JLabel labelNumDef7_3 = new JLabel();
+	
+
 
 	private JButton echangeCavalierBtn = new JButton("Echanger soldat");
 	private JButton echangeCanonBtn = new JButton("Echanger soldat");
@@ -47,8 +61,8 @@ public class JeuPanel extends JPanel  {
 	private JButton okBtnAjoutArmee = new JButton("OK");
 	private JButton okBtnTerrDep = new JButton("OK");
 	private JButton okBtnTerrArr = new JButton("OK");
-	private JButton okBtnTerrDepAtt = new JButton("OK");
-	private JButton okBtnTerrArrAtt = new JButton("OK");
+	private JButton okBtnTerrAtt = new JButton("OK");
+	private JButton okBtnTerrDef = new JButton("OK");
 	private JButton okBtnNbUnite = new JButton("OK");
 	private JButton okDeplacement = new JButton("OK");
 	
@@ -58,7 +72,10 @@ public class JeuPanel extends JPanel  {
 	private JButton deplacementBtn = new JButton("Déplacement vers un territoire allié");
 	private JButton attaqueBtn = new JButton("Attaquer un territoire");
 	
-	
+	private JLabel [] tabLabelAttNom = {labelNomAtt5_0, labelNomAtt6_0, labelNomAtt7_0};
+	private JLabel [] tabLabelAttNum = {labelNumAtt5_1, labelNumAtt6_1, labelNumAtt7_1};
+	private JLabel [] tabLabelDefNom = {labelNomDef5_2, labelNomDef6_2};
+	private JLabel [] tabLabelDefNum = {labelNumDef5_3, labelNumDef6_3};
 	
 	
 	/**
@@ -209,14 +226,14 @@ public class JeuPanel extends JPanel  {
 		JPanel pAttaquerTerr = new JPanel();
 		pAttaquerTerr.setVisible(false);
 		pAttaquerTerr.setBorder(BorderFactory.createTitledBorder("Attaquer un territoire"));
-		pAttaquerTerr.setPreferredSize(new Dimension(420, 250));
+		pAttaquerTerr.setPreferredSize(new Dimension(420, 230));
 		pAttaquerTerr.setLayout(new GridBagLayout());
 		addItem(pAttaquerTerr, new JLabel("Territoire attaquant : "), 0, 0, 2, 1, GridBagConstraints.CENTER);
 		addItem(pAttaquerTerr, labelTerrDepAtt, 2, 0, 1, 1, GridBagConstraints.CENTER);
-		addItem(pAttaquerTerr, okBtnTerrDepAtt, 3, 0, 1, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, okBtnTerrAtt, 3, 0, 1, 1, GridBagConstraints.CENTER);
 		addItem(pAttaquerTerr, new JLabel("Territoire défenseur : "), 0, 1, 2, 1, GridBagConstraints.CENTER);
 		addItem(pAttaquerTerr, labelTerrArrAtt, 2, 1, 1, 1, GridBagConstraints.CENTER);
-		addItem(pAttaquerTerr, okBtnTerrArrAtt, 3, 1, 1, 1, GridBagConstraints.CENTER);
+		addItem(pAttaquerTerr, okBtnTerrDef, 3, 1, 1, 1, GridBagConstraints.CENTER);
 		addItem(pAttaquerTerr, new JLabel("Soldat"), 0, 2, 1, 1, GridBagConstraints.CENTER);
 		addItem(pAttaquerTerr, new JLabel("Cavalier"), 1, 2, 1, 1, GridBagConstraints.CENTER);
 		addItem(pAttaquerTerr, new JLabel("Canon"), 2, 2, 1, 1, GridBagConstraints.CENTER);
@@ -226,16 +243,16 @@ public class JeuPanel extends JPanel  {
 		addItem(pAttaquerTerr, okBtnNbUnite, 3, 3, 1, 1, GridBagConstraints.CENTER);
 		addItem(pAttaquerTerr, new JLabel("Attaquant"), 0, 4, 2, 1, GridBagConstraints.CENTER);
 		addItem(pAttaquerTerr, new JLabel("Défenseur"), 2, 4, 2, 1, GridBagConstraints.CENTER);
-		addItem(pAttaquerTerr, new JLabel("Canon"), 0, 5, 1, 1, GridBagConstraints.EAST);
-		addItem(pAttaquerTerr, new JLabel("5"), 1, 5, 1, 1, GridBagConstraints.WEST);
-		addItem(pAttaquerTerr, new JLabel("Soldat"), 2, 5, 1, 1, GridBagConstraints.EAST);
-		addItem(pAttaquerTerr, new JLabel("4"), 3, 5, 1, 1, GridBagConstraints.WEST);
-		addItem(pAttaquerTerr, new JLabel("Cavalier"), 0, 6, 1, 1, GridBagConstraints.EAST);
-		addItem(pAttaquerTerr, new JLabel("3"), 1, 6, 1, 1, GridBagConstraints.WEST);
-		addItem(pAttaquerTerr, new JLabel("Soldat"), 2, 6, 1, 1, GridBagConstraints.EAST);
-		addItem(pAttaquerTerr, new JLabel("3"), 3, 6, 1, 1, GridBagConstraints.WEST);
-		addItem(pAttaquerTerr, new JLabel("Soldat"), 0, 7, 1, 1, GridBagConstraints.EAST);
-		addItem(pAttaquerTerr, new JLabel("3"), 1, 7, 1, 1, GridBagConstraints.WEST);
+		addItem(pAttaquerTerr, labelNomAtt5_0, 0, 5, 1, 1, GridBagConstraints.EAST);
+		addItem(pAttaquerTerr, labelNumAtt5_1, 1, 5, 1, 1, GridBagConstraints.WEST);
+		addItem(pAttaquerTerr, labelNomDef5_2, 2, 5, 1, 1, GridBagConstraints.EAST);
+		addItem(pAttaquerTerr, labelNumDef5_3, 3, 5, 1, 1, GridBagConstraints.WEST);
+		addItem(pAttaquerTerr, labelNomAtt6_0, 0, 6, 1, 1, GridBagConstraints.EAST);
+		addItem(pAttaquerTerr, labelNumAtt6_1, 1, 6, 1, 1, GridBagConstraints.WEST);
+		addItem(pAttaquerTerr, labelNomDef6_2, 2, 6, 1, 1, GridBagConstraints.EAST);
+		addItem(pAttaquerTerr, labelNumDef6_3, 3, 6, 1, 1, GridBagConstraints.WEST);
+		addItem(pAttaquerTerr, labelNomAtt7_0, 0, 7, 1, 1, GridBagConstraints.EAST);
+		addItem(pAttaquerTerr, labelNumAtt7_1, 1, 7, 1, 1, GridBagConstraints.WEST);
 		
 		
 		/**
@@ -348,6 +365,7 @@ public class JeuPanel extends JPanel  {
 					Integer nbCanon = (Integer) cbNbCanon.getSelectedItem();
 					Partie.getInstance().deplacementVersTerritoireAllie(tDep, tArr, nbSoldat, nbCavalier, nbCanon);
 				} else {
+					InterfaceCarte.getInstance().getLabelMessage().setText("Veuillez saisir un territoire de départ et d'arrive");
 					System.out.println("Veuillez saisir un territoire de départ et d'arrive");
 				}
 
@@ -367,6 +385,7 @@ public class JeuPanel extends JPanel  {
 					pAttaquerTerr.setVisible(false);
 
 				} else {
+					InterfaceCarte.getInstance().getLabelMessage().setText("Veuillez placer toutes vos armées");
 					System.out.println("Veuillez placer toutes vos armées");
 				}
 			}
@@ -391,21 +410,35 @@ public class JeuPanel extends JPanel  {
 			}
 		});
 		
-		okBtnTerrDepAtt.addActionListener(new ActionListener() {
+		okBtnTerrAtt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				tDepAtt = Partie.getInstance().getTerritoireSelected();
-				labelTerrDepAtt.setText(tDepAtt.getNom());
-				cbNbSoldatAtt.setModel( modelComboBox(tDepAtt.getArmee().getNbSoldat() - 1)); // (-1) pour forcer l'utilisateur à laisser 1 armée sur terr
-				cbNbCavalierAtt.setModel( modelComboBox(tDepAtt.getArmee().getNbCavalier()) );
-				cbNbCanonAtt.setModel( modelComboBox(tDepAtt.getArmee().getNbCanon()) );
+				tAtt = Partie.getInstance().getTerritoireSelected();
+				labelTerrDepAtt.setText(tAtt.getNom());
+				cbNbSoldatAtt.setModel( modelComboBox(tAtt.getArmee().getNbSoldat() - 1)); // (-1) pour forcer l'utilisateur à laisser 1 armée sur terr
+				cbNbCavalierAtt.setModel( modelComboBox(tAtt.getArmee().getNbCavalier()) );
+				cbNbCanonAtt.setModel( modelComboBox(tAtt.getArmee().getNbCanon()) );
 				
+				for (int i = 0  ; i< tabLabelAttNom.length; i++){
+					tabLabelAttNom[i].setText("");
+				}
+				for (int i = 0  ; i< tabLabelDefNom.length; i++){
+					tabLabelDefNom[i].setText("");
+				}
+				for (int i = 0  ; i< tabLabelAttNum.length; i++){
+					tabLabelAttNum[i].setText("");
+				}
+				for (int i = 0  ; i< tabLabelDefNum.length; i++){
+					tabLabelDefNum[i].setText("");
+				}	
 			}
 		});
 		
-		okBtnTerrArrAtt.addActionListener(new ActionListener() {
+		
+		
+		okBtnTerrDef.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				tArrAtt = Partie.getInstance().getTerritoireSelected();
-				labelTerrArrAtt.setText(tArrAtt.getNom());
+				tDef = Partie.getInstance().getTerritoireSelected();
+				labelTerrArrAtt.setText(tDef.getNom());
 			}
 		});
 		
@@ -419,14 +452,44 @@ public class JeuPanel extends JPanel  {
 			}
 		});
 		
+		okBtnNbUnite.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Integer nbSoldat = (Integer) cbNbSoldatAtt.getSelectedItem();
+				Integer nbCavalier = (Integer) cbNbCavalierAtt.getSelectedItem();
+				Integer nbCanon = (Integer) cbNbCanonAtt.getSelectedItem();
+				Integer somme = nbSoldat + nbCavalier + nbCanon;
+				if (somme <= 3) {
+					Partie.getInstance().attaque(tAtt, tDef, nbSoldat, nbCavalier, nbCanon);
+
+					ArrayList<Unite> listAtt = Partie.getInstance().getListAttaquant();
+					ArrayList<Unite> listDef = Partie.getInstance().getListDefenseur();
+					System.out.println("list att: " + listAtt.size());
+					for (int i = 0; i < listAtt.size(); i++) {
+						tabLabelAttNom[i].setText(type(listAtt.get(i)));
+						tabLabelAttNum[i].setText(listAtt.get(i).getNumAlea().toString());
+					}
+					System.out.println("list def: " + listDef.size());
+					for (int i = 0; i < listDef.size(); i++) {
+						tabLabelDefNom[i].setText(type(listDef.get(i)));
+						tabLabelDefNum[i].setText(listDef.get(i).getNumAlea().toString());
+					}
+				} else {
+					InterfaceCarte.getInstance().getLabelMessage().setText("Vous devez selectionner au plus 3 unités.");
+					System.out.println("Vous devez selectionner au plus 3 unités.");
+				}
+
+			}
+		});
 
 		
 		/**
-		 * Changement de joueur 
+		 * Changement de joueur
 		 * 
 		 */
 		finTourBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if (!joueur.gagner()){
+					joueur.resetTerritoiresCaptures();
 					joueur.incrementTour();
 					Partie.getInstance().nextJoueur();
 					joueur = Partie.getInstance().getJoueur();
@@ -435,17 +498,16 @@ public class JeuPanel extends JPanel  {
 					labelTour.setText("Tour : " + joueur.getTour().toString());
 					positionBtn.setVisible(true);
 					finTourBtn.setVisible(false);
-				//	positionBtn.setVisible(true);
-					
-					
-					if(joueur.getTour() == 0){
+					// positionBtn.setVisible(true);
+
+					if (joueur.getTour() == 0) {
 						positionBtn.setVisible(true);
 						deplacementBtn.setVisible(false);
 						attaqueBtn.setVisible(false);
 						finTourBtn.setVisible(false);
-						//deplacementBtn.setVisible(false);
-						//attaqueBtn.setVisible(false);
-					} else if (joueur.getTour() == 1){
+						// deplacementBtn.setVisible(false);
+						// attaqueBtn.setVisible(false);
+					} else if (joueur.getTour() == 1) {
 						deplacementBtn.setVisible(true);
 						attaqueBtn.setVisible(true);
 						positionBtn.setVisible(false);
@@ -455,32 +517,27 @@ public class JeuPanel extends JPanel  {
 						attaqueBtn.setVisible(false);
 						positionBtn.setVisible(true);
 						finTourBtn.setVisible(false);
-						//finTourBtn.setVisible(false);
+						// finTourBtn.setVisible(false);
 					}
-					
-					
-					
-					
-/*					if (joueur.getTour() == 1){
-						positionBtn.setVisible(false);
-						finTourBtn.setVisible(true);
-					} else {
-						positionBtn.setVisible(true);
-					}*/
+
 					pPositionRenfort.setVisible(false);
 					pDeplacementTerrAlie.setVisible(false);
 					pAttaquerTerr.setVisible(false);
-					//MAJ des labels
+					// MAJ des labels
 					labelNbSoldatRenfort.setText(joueur.getArmeeRecu().getNbSoldat().toString());
 					labelNbCavalierRenfort.setText(joueur.getArmeeRecu().getNbCavalier().toString());
 					labelNbCanonRenfort.setText(joueur.getArmeeRecu().getNbCanon().toString());
-					if (joueur.getTour() > 1){
+					if (joueur.getTour() > 1) {
 						joueur.receptionRenfort();
 						// MAJ du nombre de renfort
 						labelNbSoldatRenfort.setText(joueur.getArmeeRecu().getNbSoldat().toString());
 						labelNbCavalierRenfort.setText(joueur.getArmeeRecu().getNbCavalier().toString());
 						labelNbCanonRenfort.setText(joueur.getArmeeRecu().getNbCanon().toString());
 					}
+				} else {
+					InterfaceCarte.getInstance().getLabelMessage().setText("Le joueur" + joueur.getNom() + " " + joueur.getId() + " a gagné !);");
+				}
+
 			}
 		});
 		
@@ -550,6 +607,22 @@ public class JeuPanel extends JPanel  {
 		return cb;
 	}
 
+	
+	
+	
+	
+	public String type(Unite u) {
+		if (u instanceof Soldat) {
+			return "Soldat";
+		}
+		if (u instanceof Cavalier) {
+			return "Cavalier";
+		}
+		if (u instanceof Canon) {
+			return "Canon";
+		}
+		return "";
+	}
 	
 	/**
 	 * permet de placer un component selon un axe x et y 

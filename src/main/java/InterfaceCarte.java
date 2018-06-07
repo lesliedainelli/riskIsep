@@ -21,6 +21,10 @@ public class InterfaceCarte extends JFrame implements MouseListener {
 
 	public  int sourisX;
 	public  int sourisY;
+	
+	public JLabel labelMessage = new JLabel();
+
+
 
 	BufferedImage image = null;
 	
@@ -60,14 +64,12 @@ public class InterfaceCarte extends JFrame implements MouseListener {
 		JPanel pMessage = new JPanel();
 		pMessage.setPreferredSize(new Dimension(400, 50));
 		pMessage.setBorder(BorderFactory.createTitledBorder("Message"));
-		//pMessage.setLayout(new GridBagLayout());
-	//	addItem(pMessage, new JLabel("Veuillez saisir un nombre blablabla"), 0, 0, 1, 1, GridBagConstraints.CENTER);
-		
+		pMessage.add(labelMessage);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.add(pan);
 		this.add(panJeu, BorderLayout.EAST);
-		//this.add(pMessage, BorderLayout.SOUTH);
+		this.add(pMessage, BorderLayout.SOUTH);
 		
 		this.setSize(1600, 800);
 		this.setVisible(true);
@@ -124,6 +126,14 @@ public class InterfaceCarte extends JFrame implements MouseListener {
 		return sourisY;
 	}
 
+	public JLabel getLabelMessage() {
+		return labelMessage;
+	}
+
+
+	public void setLabelMessage(JLabel labelMessage) {
+		this.labelMessage = labelMessage;
+	}
 }
 
 

@@ -15,6 +15,8 @@ public class Armee {
 	
 	public Armee() {
 	}
+
+
 	
 	/**
 	 * Permet d'ajouter plusieurs soldats à la liste de soldat
